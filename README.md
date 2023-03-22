@@ -1,5 +1,8 @@
 BSPQ23-E4
 ===================
+IDEA
+     The idea of our project is to create an app to buy computer products. We are focusing on three specific ones, which are computers, consoles and tablets. There             will be two types of users, the client, which will be able to register on their own and login to buy the available products, and the admin, which can only be               registered by another admin, and will be able to add new products and manage the app and their clients.
+===================
 
 This example relies on the DataNucleus Maven plugin. Check the database configuration in the *datanucleus.properties* file and the JDBC driver dependency specified in the *pom.xml* file.
 
@@ -26,3 +29,11 @@ Run the following command to remove the database schema
 Run the following command to generate the Javadoc documentation inside the *target/site/apidocs* directory
 
       mvn javadoc:javadoc
+
+=====================================
+AUTHORS
+      Mikel
+      Ana
+      Markel
+      Javi
+      Arkaitz
