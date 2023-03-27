@@ -47,7 +47,7 @@ public class Main
     @SuppressWarnings("unchecked")
 	public static void main(String[] args)
     {
-    	logger.info("Starting ....");
+    	logger.info("Starting ...");
         // Create a PersistenceManagerFactory for this datastore
         PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 
