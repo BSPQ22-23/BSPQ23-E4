@@ -17,10 +17,13 @@ Make sure that the database was correctly configured. Use the contents of the fi
 Run the following command to create database schema for this sample.
 
       mvn datanucleus:schema-create
+Run the following command to Open the server
 
-Run the following command to launch the main example class 
-   
-      mvn exec:java
+     mvn jetty:run
+Open antoher console and put the following to launch the main example class
+      
+      mvn clean compile
+      mvn exec:java -Pclient
 
 Run the following command to remove the database schema
    
