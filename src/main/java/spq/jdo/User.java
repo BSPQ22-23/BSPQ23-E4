@@ -15,7 +15,7 @@ limitations under the License.
 Contributors:
     ...
 **********************************************************************/
-package org.datanucleus.samples.jdo.tutorial;
+package spq.jdo;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Inheritance;

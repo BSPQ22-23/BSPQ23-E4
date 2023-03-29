@@ -15,7 +15,7 @@ limitations under the License.
 Contributors:
     ...
 **********************************************************************/
-package org.datanucleus.samples.jdo.tutorial;
+package spq.client;
 
 
 import java.util.Iterator;
