@@ -32,6 +32,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 import spq.serialitazion.UserData;
+import spq.windows.MyWindow;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -88,6 +89,8 @@ public class TheClient
 		if (args.length != 2) {
 			logger.info("Use: java Client.Client [host] [port]");
 			System.exit(0);
+			
+			 
 		}
 
 		String hostname = args[0];
@@ -95,7 +98,7 @@ public class TheClient
 		
 		TheClient newclient= new TheClient(hostname, port);
 		newclient.registerUser(USER, PASSWORD, 23, 0);
-		
+		new MyWindow();
 		
 		
     }
