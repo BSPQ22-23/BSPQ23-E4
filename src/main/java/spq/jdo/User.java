@@ -15,46 +15,54 @@ limitations under the License.
 Contributors:
     ...
 **********************************************************************/
-package org.datanucleus.samples.jdo.tutorial;
+package spq.jdo;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
-
+import javax.jdo.annotations.PrimaryKey;
 /**
- * Definition of a User. Extends basic Product class.
- * @author mikel
- *
+ * Definition of a User.
  */
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class User
-{
+{	
+	
+	
 	/**
 	 * This variable represents the name of a User
 	 */
-    protected String name=null;
-    /**
+	
+	@PrimaryKey
+    String name=null;
+   
+	/**
 	 * This variable represents the name of a User
 	 */
-    protected String password=null;
     
-    /**
-	 * Void constructor of User
-	 */
-    protected User()
-    {
-    }
+	String password=null;
+    
+	//Purse of the User
+    
+	double purse=0;
+    
+	//Type of the user 0 is client ,1 is admin
+    
+	int type;
     
     /**
      * A user of our web page
 	 * @param name name of the user
 	 * @param password password of the user
      */
-    public User(String name, String password)
+    public User(String name, String password,double purse,int type)
     {
         this.name = name;
         this.password = password;
+        this.purse=purse;
+        this.type=type;
+        
     }
 
     /**
@@ -99,6 +107,22 @@ public class User
 	 */
     public String toString()
     {
-        return "Name : " + name + " \n Password : " + password + " \n";
+        return "Name : " + name + " \n Password : " + password + " \n" +"Your money:"+purse;
     }
+
+	public double getPurse() {
+		return purse;
+	}
+
+	public void setPurse(double purse) {
+		this.purse = purse;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
 }

@@ -15,7 +15,7 @@ limitations under the License.
 Contributors:
     ...
 **********************************************************************/
-package org.datanucleus.samples.jdo.tutorial;
+package spq.client;
 
 
 import java.util.Iterator;
@@ -61,8 +61,8 @@ public class Main
         {
             tx.begin();
             logger.info("Persisting products");
-            Product product = new Product("Sony Discman","A standard discman from Sony",200.00);
-            Book book = new Book("Lord of the Rings by Tolkien","The classic story",49.99,"JRR Tolkien", "12345678", "MyBooks Factory");
+            \\Product product = new Product("Sony Discman","A standard discman from Sony",200.00);
+            \\Book book = new Book("Lord of the Rings by Tolkien","The classic story",49.99,"JRR Tolkien", "12345678", "MyBooks Factory");
             pm.makePersistent(product);
             pm.makePersistent(book);
  
@@ -86,8 +86,8 @@ public class Main
         {
             tx.begin();
             logger.info("Retrieving Extent for Products");
-            Extent<Product> e = pm.getExtent(Product.class, true);
-            Iterator<Product> iter = e.iterator();
+            \\Extent<Product> e = pm.getExtent(Product.class, true);
+            \\Iterator<Product> iter = e.iterator();
             while (iter.hasNext())
             {
                 Object obj = iter.next();
