@@ -32,7 +32,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 public class Client extends User
 {
 	/**
-	 * This variable represents the money of the client
+	 * This variable represaents the money of the client
 	 */
 	protected double purse=0.0;
 
