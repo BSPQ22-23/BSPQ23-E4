@@ -100,7 +100,7 @@ public class Server {
 				logger.info("Password set user: {}", user);
 				
 				logger.info("Setting purse user: {}", user);
-				user.setPurse(userData.getPurse());
+				user.setPurse(0);
 				logger.info("Purse set user:{}", user);
 				
 				logger.info("Setting type user: {}", user);
@@ -109,7 +109,7 @@ public class Server {
 				
 			}else {
 				logger.info("Creating user: {}", user);
-				user= new User(userData.getName(),userData.getPassword(),userData.getPurse(),1);
+				user= new User(userData.getName(),userData.getPassword(),0,1);
 				pm.makePersistent(user);
 				logger.info("User created: {}", user);
 			}
