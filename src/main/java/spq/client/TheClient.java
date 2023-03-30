@@ -18,6 +18,7 @@ Contributors:
 package spq.client;
 
 
+import java.awt.EventQueue;
 import java.util.Iterator;
 
 import java.util.List;
@@ -83,6 +84,7 @@ public class TheClient
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
 			logger.info("User correctly registered");
+			System.out.println("Good");
 		}
     	
     
@@ -119,9 +121,23 @@ public class TheClient
 		String hostname = args[0];
 		String port = args[1];
 		
-		TheClient newclient= new TheClient(hostname, port);
-		newclient.registerUser(USER, PASSWORD, 23, 0);
-		new LoginWindow();
+		/*TheClient newclient= new TheClient(hostname, port);
+		newclient.registerUser(USER, PASSWORD, 23, 0);*/
+		
+		//new LoginWindow();
+		/*LoginWindow frame = new LoginWindow();
+		frame.setVisible(true);*/
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginWindow frame = new LoginWindow(hostname, port);
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		
 		
     }

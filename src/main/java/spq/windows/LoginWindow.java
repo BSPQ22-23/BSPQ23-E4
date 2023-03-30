@@ -8,10 +8,14 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import spq.client.TheClient;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -20,7 +24,7 @@ public class LoginWindow extends JFrame {
 	private JPasswordField txtPassword;
 	private JFrame currentWindow;
 
-    public LoginWindow() {
+    public LoginWindow(String hostname, String port) {
         super("My Window"); // Set the title of the window
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Exit the application when the window is closed
@@ -54,8 +58,8 @@ public class LoginWindow extends JFrame {
         panelCenter.add(txtName);
         txtName.setColumns(10);
         
-        JLabel lblNewLabel_1 = new JLabel("New label");
-        panelCenter.add(lblNewLabel_1);
+        JLabel lblPassword = new JLabel("Enter your password");
+        panelCenter.add(lblPassword);
         
         txtPassword = new JPasswordField();
         panelCenter.add(txtPassword);
@@ -66,11 +70,13 @@ public class LoginWindow extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new RegisterWindow(currentWindow);
+				new RegisterWindow(currentWindow, hostname, port);
 				currentWindow.setVisible(false);
 			}
 		});
         
+        
+        setVisible(true);
 		
     }
     
