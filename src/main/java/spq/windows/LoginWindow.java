@@ -27,6 +27,8 @@ import javax.swing.border.EmptyBorder;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
+import spq.client.TheClient;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -90,6 +92,11 @@ public class LoginWindow extends JFrame {
 		btnLogIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String hostname="localhost";
+				String  port = "8080";
+				
+				TheClient newclient= new TheClient(hostname, port);
+				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
 
 			}
 

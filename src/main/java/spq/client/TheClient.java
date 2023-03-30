@@ -32,6 +32,7 @@ import javax.jdo.Transaction;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import spq.jdo.User;
 import spq.serialitazion.UserData;
 import spq.windows.LoginWindow;
 
@@ -87,6 +88,27 @@ public class TheClient
     	
     
     }
+    
+    
+    public User loginUser(String name, String password) {
+    WebTarget loginUserWebTarget = webTarget.path("login");
+    Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
+
+    UserData userData = new UserData();
+    userData.setName(name);
+    userData.setPassword(password);
+
+    Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+    if (response.getStatus() != Status.OK.getStatusCode()) {
+        logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        return null;
+    } else {
+        User userDataResponse = response.readEntity(User.class);
+        logger.info("User correctly logged in");
+        return userDataResponse;
+    }
+}
+     
     
     public boolean checkUserInDatabase(String name) {
         WebTarget checkUserWebTarget = webTarget.path("users").queryParam("name", name);
