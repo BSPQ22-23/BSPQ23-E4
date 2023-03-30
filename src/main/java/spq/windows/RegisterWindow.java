@@ -11,6 +11,9 @@ import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -96,14 +99,14 @@ public class RegisterWindow extends JFrame {
 	private JLabel labelDNI = new JLabel();
 	private JLabel labelNombre = new JLabel();
 	private JLabel labelApellido = new JLabel();
-	private JLabel labelEdad = new JLabel();
+	private JLabel labelPurse = new JLabel();
 	private JLabel labelEmail = new JLabel();
 	private JLabel labelContrasenya = new JLabel();
 	private JLabel labelConfirmarContrasenya = new JLabel();
 	private JTextField textoDNI = new JTextField();
 	private JTextField textoNombre = new JTextField();
 	private JTextField textoApellido = new JTextField();
-	private JTextField textoEdad = new JTextField();
+	private JTextField textoPurse = new JTextField();
 	private JTextField textoEmail = new JTextField();
 	private JPasswordField textoContrasenya = new JPasswordField();
 	private JPasswordField textoConfirmarContrasenya = new JPasswordField();
@@ -146,11 +149,11 @@ public class RegisterWindow extends JFrame {
 		labelApellido.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(labelApellido);
 				
-		labelEdad.setText(" Age:");
-		labelEdad.setBounds(107, 275, 99, 20);
-		labelEdad.setOpaque(true);
-		labelEdad.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelEdad);
+		labelPurse.setText("Purse:");
+		labelPurse.setBounds(107, 275, 99, 20);
+		labelPurse.setOpaque(true);
+		labelPurse.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelPurse);
 		
 		labelEmail.setText("Email:");
 		labelEmail.setBounds(104, 325, 71, 20);
@@ -193,8 +196,8 @@ public class RegisterWindow extends JFrame {
 		textoApellido.setBounds(216, 225, 143, 20);
 		contentpane.add(textoApellido);
 		
-		textoEdad.setBounds(214, 275, 143, 20);
-		contentpane.add(textoEdad);
+		textoPurse.setBounds(214, 275, 143, 20);
+		contentpane.add(textoPurse);
 
 		textoEmail.setBounds(214, 325, 143, 20);
 		contentpane.add(textoEmail);
@@ -210,9 +213,19 @@ public class RegisterWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String hostname="localhost";
 				String  port = "8080";
-				
+				double purse = Double.parseDouble(textoPurse.getText());
+				DecimalFormat formato = new DecimalFormat("#.00");
+				textoPurse.addKeyListener(new KeyAdapter() {
+				    public void keyReleased(KeyEvent e) {
+				        try {
+				            textoPurse.setText(formato.format(purse));
+				        } catch (NumberFormatException ex) {
+				            // el texto ingresado no es un número válido
+				        }
+				    }
+				});
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), 1.0, 0);
+				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), purse, 0);
 			}
 		});
 		
