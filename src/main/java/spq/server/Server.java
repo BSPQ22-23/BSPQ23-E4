@@ -81,7 +81,49 @@ public class Server {
 		}
 	}
 	
-	
+	@POST
+	@Path("/register")
+	public Response registerAdmin(UserData userData) {
+		try {
+			tx.begin();
+			logger.info("Checking whether the user already exits or not: '{}'",userData.getName());
+			User user=null;
+			try {
+				user= pm.getObjectById(User.class,userData.getName());
+			}catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+			}
+			logger.info("User: {}",user);
+			if (user!=null) {
+				logger.info("Setting password user: {}", user);
+				user.setPassword(userData.getPassword());
+				logger.info("Password set user: {}", user);
+				
+				logger.info("Setting purse user: {}", user);
+				user.setPurse(userData.getPurse());
+				logger.info("Purse set user:{}", user);
+				
+				logger.info("Setting type user: {}", user);
+				user.setType(1);
+				logger.info("Type set user:{}", user);
+				
+			}else {
+				logger.info("Creating user: {}", user);
+				user= new User(userData.getName(),userData.getPassword(),userData.getPurse(),1);
+				pm.makePersistent(user);
+				logger.info("User created: {}", user);
+			}
+			tx.commit();
+			return Response.ok().build();
+
+			
+		}finally {
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+		}
+	}
 	/*@POST
 	@Path("/login")
 	public Response loginUser(UserData userData) {
