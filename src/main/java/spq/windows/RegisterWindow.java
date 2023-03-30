@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-
+import spq.client.TheClient;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -132,12 +132,13 @@ public class RegisterWindow extends JFrame {
 		labelDNI.setBounds(108, 124, 44, 20);
 		labelDNI.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(labelDNI, BorderLayout.SOUTH);
-		
+		//GET USERNAME
 		labelNombre.setText("Name:");
 		labelNombre.setBounds(99, 175, 71, 20);
 		labelNombre.setOpaque(true);
 		labelNombre.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(labelNombre);
+		
 		
 		labelApellido.setText("Surname:");
 		labelApellido.setBounds(98, 225, 61, 20);
@@ -187,7 +188,8 @@ public class RegisterWindow extends JFrame {
 
 		textoNombre.setBounds(214, 175, 143, 20);
 		contentpane.add(textoNombre);
-
+		String username= textoNombre.getText();
+		
 		textoApellido.setBounds(216, 225, 143, 20);
 		contentpane.add(textoApellido);
 		
@@ -199,13 +201,18 @@ public class RegisterWindow extends JFrame {
 
 		textoContrasenya.setBounds(214, 375, 143, 20);
 		contentpane.add(textoContrasenya);
-
+		String user_password=textoContrasenya.getText();
 		textoConfirmarContrasenya.setBounds(214, 425, 143, 20);
 		contentpane.add(textoConfirmarContrasenya);
 
 		btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String hostname="localhost";
+				String  port = "8080";
+				
+				TheClient newclient= new TheClient(hostname, port);
+				newclient.registerUser(username,user_password , 1.0, 0);
 			}
 		});
 		
