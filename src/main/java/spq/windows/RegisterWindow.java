@@ -212,7 +212,7 @@ public class RegisterWindow extends JFrame {
 				String  port = "8080";
 				
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(username,user_password , 1.0, 0);
+				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), 1.0, 0);
 			}
 		});
 		
