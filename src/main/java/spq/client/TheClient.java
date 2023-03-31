@@ -56,6 +56,7 @@ import javax.ws.rs.core.Response.Status;
  */
 public class TheClient
 {
+	//coment and example
 	private static final String USER = "clienteparapruebas";
 	private static final String PASSWORD = "clienteparapruebas";
     
