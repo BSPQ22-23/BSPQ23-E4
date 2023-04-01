@@ -97,16 +97,18 @@ public class LoginWindow extends JFrame {
 				String  port = "8080";
 				
 				TheClient newclient= new TheClient(hostname, port);
-				User logged_client = newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
+				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
+				new MainWindowUser();
+				dispose();
 				//this.dispose
-				if (logged_client.getType()==0) {
-					new MainWindowUser();
-					dispose();
+//				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
+//					new MainWindowUser();
+//					dispose();
 
-				}else if(logged_client.getType()==1){
-					new MainWindowAdmin();
-					dispose();
-				}
+//				}else if(newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==1){
+//					new MainWindowAdmin();
+//					dispose();
+//				}
 				
 			}
 

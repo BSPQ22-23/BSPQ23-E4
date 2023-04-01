@@ -92,6 +92,7 @@ public class Server {
 	        } else if (user.getPassword().equals(userData.getPassword())) {
 	            logger.info("User credentials are valid: '{}'", userData.getName());
 	            return Response.ok().build();
+	            
 	        } else {
 	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
 	            return Response.status(Response.Status.UNAUTHORIZED).build();
