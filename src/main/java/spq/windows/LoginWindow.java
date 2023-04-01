@@ -98,9 +98,8 @@ public class LoginWindow extends JFrame {
 				
 				TheClient newclient= new TheClient(hostname, port);
 				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
-				new MainWindowUser();
-				dispose();
-				//this.dispose
+				new MainWindowUser().setVisible(true);
+				
 //				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
 //					new MainWindowUser();
 //					dispose();
