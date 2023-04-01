@@ -79,7 +79,30 @@ public class Server {
 	                tx.rollback();
 	            }
 		}
+	}@POST
+	@Path("/login")
+	public Response login(UserData userData) {
+	    try {
+	        tx.begin();
+	        logger.info("Checking user credentials for user: '{}'",userData.getName());
+	        User user = pm.getObjectById(User.class, userData.getName());
+	        if (user == null) {
+	            logger.info("User not found: '{}'", userData.getName());
+	            return Response.status(Response.Status.UNAUTHORIZED).build();
+	        } else if (user.getPassword().equals(userData.getPassword())) {
+	            logger.info("User credentials are valid: '{}'", userData.getName());
+	            return Response.ok().build();
+	        } else {
+	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
+	            return Response.status(Response.Status.UNAUTHORIZED).build();
+	        }
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	    }
 	}
+
 	
 	
 	@GET
