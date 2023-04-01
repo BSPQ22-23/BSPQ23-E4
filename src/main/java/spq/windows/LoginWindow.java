@@ -28,6 +28,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 
 import spq.client.TheClient;
+import spq.jdo.User;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -96,10 +97,15 @@ public class LoginWindow extends JFrame {
 				String  port = "8080";
 				
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
+				User logged_client = newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
 				//this.dispose
-				new MainWindowUser();
+				if (logged_client.getType()==0) {
+					new MainWindowUser();
 
+				}else if(logged_client.getType()==1){
+					new MainWindowAdmin();
+				}
+				
 			}
 
 		});
