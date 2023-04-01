@@ -10,6 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -79,7 +80,9 @@ public class Server {
 	                tx.rollback();
 	            }
 		}
-	}@POST
+	}
+	
+	/*@POST
 	@Path("/login")
 	public Response login(UserData userData) {
 	    try {
@@ -95,6 +98,34 @@ public class Server {
 	            
 	        } else {
 	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
+	            return Response.status(Response.Status.UNAUTHORIZED).build();
+	        }
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	    }
+	}*/
+
+	
+	@POST
+	@Path("/login")
+	public Response login(@QueryParam("name") String name, @QueryParam("password") String password) {
+	    try {
+	        tx.begin();
+	        logger.info("Checking whether the user exists or not: '{}'", name);
+	        User user = null;
+	        try {
+	            user = pm.getObjectById(User.class, name);
+	        } catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+	            logger.info("Exception launched: {}", jonfe.getMessage());
+	        }
+	        logger.info("User: {}", user);
+	        if (user != null && user.getPassword().equals(password)) {
+	            logger.info("User authenticated: {}", user);
+	            return Response.ok(user).build();
+	        } else {
+	            logger.info("User not authenticated: {}", name);
 	            return Response.status(Response.Status.UNAUTHORIZED).build();
 	        }
 	    } finally {
