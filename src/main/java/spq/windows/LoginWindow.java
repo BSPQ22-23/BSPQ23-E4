@@ -98,16 +98,16 @@ public class LoginWindow extends JFrame {
 				
 				TheClient newclient= new TheClient(hostname, port);
 				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
-				new MainWindowUser().setVisible(true);
 				
-//				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
-//					new MainWindowUser();
-//					dispose();
+				
+				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
+					new MainWindowUser();
+					dispose();
 
-//				}else if(newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==1){
-//					new MainWindowAdmin();
-//					dispose();
-//				}
+				}else if(newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==1){
+					new MainWindowAdmin();
+					dispose();
+				}
 				
 			}
 

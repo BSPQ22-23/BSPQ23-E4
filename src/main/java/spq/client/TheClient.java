@@ -102,7 +102,7 @@ public class TheClient
     Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
     if (response.getStatus() != Status.OK.getStatusCode()) {
         logger.error("Error connecting with the server. Code: {}", response.getStatus());
-        return null;
+        return null; 
     } else {
         User userDataResponse = response.readEntity(User.class);
         logger.info("User correctly logged in");
