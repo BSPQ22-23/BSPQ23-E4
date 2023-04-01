@@ -101,9 +101,11 @@ public class LoginWindow extends JFrame {
 				//this.dispose
 				if (logged_client.getType()==0) {
 					new MainWindowUser();
+					dispose();
 
 				}else if(logged_client.getType()==1){
 					new MainWindowAdmin();
+					dispose();
 				}
 				
 			}

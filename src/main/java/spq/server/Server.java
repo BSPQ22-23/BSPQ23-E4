@@ -60,12 +60,12 @@ public class Server {
 				logger.info("Purse set user:{}", user);
 				
 				logger.info("Setting type user: {}", user);
-				user.setType(0);
+				user.setType(userData.getType());
 				logger.info("Type set user:{}", user);
 				
 			}else {
 				logger.info("Creating user: {}", user);
-				user= new User(userData.getName(),userData.getPassword(),userData.getPurse(),0);
+				user= new User(userData.getName(),userData.getPassword(),userData.getPurse(),userData.getType());
 				pm.makePersistent(user);
 				logger.info("User created: {}", user);
 			}
