@@ -10,7 +10,7 @@ Run the following command to build everything and enhance the DB classes:
 
       mvn clean compile
 
-Make sure that the database was correctly configured. Use the contents of the file *create-productsdb.sql* to create the database and grant privileges. For example,
+Make sure that the database was correctly configured. Use the contents of the file *create-productsdb.sql* to create the database and grant privileges(Only if you do not have the database created do this step). For example,
 
       mysql –uroot -p < sql/create-productsdb.sql
 
