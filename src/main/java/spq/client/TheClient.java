@@ -145,6 +145,7 @@ public class TheClient
 		
 		TheClient newclient= new TheClient(hostname, port);
 		newclient.registerUser(USER, PASSWORD, 23, 0);
+		newclient.registerUser("admin", "admin", 0, 1);
 		new LoginWindow();
 		
 		
