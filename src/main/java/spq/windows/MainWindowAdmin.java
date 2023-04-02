@@ -93,7 +93,7 @@ public class MainWindowAdmin extends JFrame{
 				String hostname="localhost";
 				String  port = "8080";
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(username,user_password, 0, 1);
+				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), 0, 1);
 			}
 		});
 		
