@@ -59,7 +59,7 @@ public class LoginWindow extends JFrame {
 		labelTitle.setBounds(49, 33, 390, 50);
 		contentpane.add(labelTitle);
 
-		labelUsuario.setText("Email:");
+		labelUsuario.setText("Usuario:");
 		labelUsuario.setOpaque(true);
 		labelUsuario.setBounds(85, 125, 55, 20);
 		labelUsuario.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
@@ -101,12 +101,14 @@ public class LoginWindow extends JFrame {
 				
 				
 				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
-					new MainWindowUser();
-					dispose();
-
+					MainWindowUser w_user=new MainWindowUser();
+					w_user.setVisible(true);
+					
 				}else if(newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==1){
 					new MainWindowAdmin();
-					dispose();
+					MainWindowAdmin w_admin=new MainWindowAdmin();
+					w_admin.setVisible(true);
+					
 				}
 				
 			}

@@ -69,6 +69,6 @@ public class MainWindowUser {
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
-		
+		windowUser.setVisible(b);
 	}
 }
