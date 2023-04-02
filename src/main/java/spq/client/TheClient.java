@@ -119,6 +119,8 @@ public class TheClient
         userData.setPassword(newPassword);
         userData.setPurse(user.getPurse());
         userData.setType(user.getType());
+        
+        
 
         Response response = invocationBuilder.put(Entity.entity(userData, MediaType.APPLICATION_JSON));
         if (response.getStatus() != Status.OK.getStatusCode()) {

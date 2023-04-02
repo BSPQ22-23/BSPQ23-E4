@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -130,25 +131,30 @@ public class Server {
 
 	@PUT
 	@Path("/changePassword")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response changePassword(UserCredentials userCredentials) {
+	public Response changePassword(@PathParam("name") String name, UserData userData) {
 	    try {
 	        tx.begin();
-	        User user = pm.getObjectById(User.class, userCredentials.getName());
-	        if (user != null && user.getPassword().equals(userCredentials.getOldPassword())) {
-	            user.setPassword(userCredentials.getNewPassword());
+	        User user = pm.getObjectById(User.class, name);
+	        if (user != null) {
+	            user.setPassword(userData.getPassword());
+	            pm.makePersistent(user);
 	            tx.commit();
+	            logger.info("Password changed for user '{}'", user.getName());
 	            return Response.ok().build();
 	        } else {
-	            tx.rollback();
-	            return Response.status(Status.FORBIDDEN).build();
+	            logger.error("User with name '{}' not found", name);
+	            return Response.status(Status.NOT_FOUND).build();
 	        }
-	    } catch (Exception ex) {
-	        logger.error("Error changing password: {}", ex.getMessage());
-	        tx.rollback();
-	        return Response.serverError().build();
+	    } catch (Exception e) {
+	        logger.error("Error changing password for user '{}': {}", name, e.getMessage());
+	        return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
 	    }
 	}
+
 	
 	@GET
 	@Path("/hello")
