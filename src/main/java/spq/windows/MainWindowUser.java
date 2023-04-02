@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class MainWindowUser {
+public class MainWindowUser extends JFrame{
 
 	private JFrame windowUser;
 	private JTable tableProduct;
@@ -76,7 +76,7 @@ public class MainWindowUser {
 		btnchangePassword.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Solicita al usuario que ingrese su nueva contraseña
+				/*// Solicita al usuario que ingrese su nueva contraseña
 				String newPassword = JOptionPane.showInputDialog("Introduce la nueva contraseña: ");
 
 				// Actualiza la contraseña del usuario actual
@@ -90,8 +90,21 @@ public class MainWindowUser {
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,
 							"Se produjo un error al actualizar la contraseña: " + ex.getMessage());
-				}
-			}
+				}*/
+				
+				String newPassword = JOptionPane.showInputDialog("Introduce the new Password: ");
+		    	User neu = new User(u.getName(), newPassword, u.getPurse(), 0);
+		    	String hostname="localhost";
+				String  port = "8080";
+				
+				TheClient newclient= new TheClient(hostname, port);
+				//newclient.changeUserPassword(u, newPassword);
+				newclient.deleteUser(u);
+				newclient.registerUser(neu.getName(), neu.getPassword(), neu.getPurse(), 0);
+				new LoginWindow();
+				dispose();
+		    }
+			
 		});
 	}
 

@@ -131,6 +131,18 @@ public class TheClient
             user.setPassword(newPassword);
         }
     }
+    
+    public void deleteUser(User user) {
+        WebTarget deleteUserWebTarget = webTarget.path("deleteUser");
+        Invocation.Builder invocationBuilder = deleteUserWebTarget.request(MediaType.APPLICATION_JSON);
+        
+        Response response = invocationBuilder.delete();
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        } else {
+            logger.info("User {} correctly deleted", user.getName());
+        }
+    }
      
     
     public boolean checkUserInDatabase(String name) {

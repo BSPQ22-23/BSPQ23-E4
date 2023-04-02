@@ -5,6 +5,7 @@ import javax.jdo.Query;
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -105,6 +106,31 @@ public class Server {
 		        return Response.serverError().build();
 		    }
 		}
+	
+	@DELETE
+	@Path("/deleteUser")
+	public Response deleteUser(UserData userData) {
+	    try {
+	        tx.begin();
+	        User user = pm.getObjectById(User.class, userData.getName());
+	        if (user != null) {
+	            pm.deletePersistent(user);
+	            tx.commit();
+	            logger.info("User '{}' deleted", user.getName());
+	            return Response.ok().build();
+	        } else {
+	            logger.error("User with name '{}' not found", userData.getName());
+	            return Response.status(Status.NOT_FOUND).build();
+	        }
+	    } catch (Exception e) {
+	        logger.error("Error deleting user '{}': {}", userData.getName(), e.getMessage());
+	        return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	    }
+	}
 	
 	
 //	    try {
