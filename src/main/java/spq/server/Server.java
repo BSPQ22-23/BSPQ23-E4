@@ -7,6 +7,7 @@ import javax.jdo.Transaction;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -16,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 
 import spq.jdo.User;
+import spq.serialitazion.UserCredentials;
 import spq.serialitazion.UserData;
 
 import org.apache.logging.log4j.LogManager;
@@ -102,6 +104,8 @@ public class Server {
 		        return Response.serverError().build();
 		    }
 		}
+	
+	
 //	    try {
 //	        tx.begin();
 //	        logger.info("Checking user credentials for user: '{}'",userData.getName());
@@ -124,7 +128,27 @@ public class Server {
 //	    }
 	
 
-	
+	@PUT
+	@Path("/changePassword")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response changePassword(UserCredentials userCredentials) {
+	    try {
+	        tx.begin();
+	        User user = pm.getObjectById(User.class, userCredentials.getName());
+	        if (user != null && user.getPassword().equals(userCredentials.getOldPassword())) {
+	            user.setPassword(userCredentials.getNewPassword());
+	            tx.commit();
+	            return Response.ok().build();
+	        } else {
+	            tx.rollback();
+	            return Response.status(Status.FORBIDDEN).build();
+	        }
+	    } catch (Exception ex) {
+	        logger.error("Error changing password: {}", ex.getMessage());
+	        tx.rollback();
+	        return Response.serverError().build();
+	    }
+	}
 	
 	@GET
 	@Path("/hello")

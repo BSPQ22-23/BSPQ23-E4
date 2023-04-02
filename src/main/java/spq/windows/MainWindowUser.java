@@ -3,9 +3,14 @@ package spq.windows;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTable;
+
+import spq.client.TheClient;
+import spq.jdo.User;
+
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -22,14 +27,14 @@ public class MainWindowUser {
 	/**
 	 * Create the application.
 	 */
-	public MainWindowUser() {
-		initialize();
+	public MainWindowUser(User u) {
+		initialize(u);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(User u) {
 		windowUser = new JFrame();
 		windowUser.setBounds(100, 100, 450, 300);
 		windowUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,21 +53,41 @@ public class MainWindowUser {
 		btnLogOut.setBackground(Color.RED);
 		btnLogOut.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnLogOut.setForeground(Color.BLACK);
+		JButton btnchangePassword = new JButton("Change Password");
+		btnchangePassword.setBackground(Color.RED);
+		btnchangePassword.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnchangePassword.setForeground(Color.BLACK);
 		GroupLayout gl_SouthPanel = new GroupLayout(SouthPanel);
 		gl_SouthPanel.setHorizontalGroup(
 			gl_SouthPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_SouthPanel.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(btnLogOut)
-					.addContainerGap(341, Short.MAX_VALUE))
+					.addGap(33)
+					.addComponent(btnchangePassword)
+					.addContainerGap(211, Short.MAX_VALUE))
 		);
 		gl_SouthPanel.setVerticalGroup(
 			gl_SouthPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_SouthPanel.createSequentialGroup()
-					.addComponent(btnLogOut)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGroup(gl_SouthPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnLogOut)
+						.addComponent(btnchangePassword))
+					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		SouthPanel.setLayout(gl_SouthPanel);
+		
+		btnchangePassword.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	String newPassword = JOptionPane.showInputDialog("Introduce the new Password: ");
+		    	String hostname="localhost";
+				String  port = "8080";
+				
+				TheClient newclient= new TheClient(hostname, port);
+				newclient.changeUserPassword(u, newPassword);
+		    }
+		});
 		
 		
 	}

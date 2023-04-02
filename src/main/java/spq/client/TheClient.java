@@ -92,23 +92,43 @@ public class TheClient
     
     
     public User loginUser(String name, String password) {
-    WebTarget loginUserWebTarget = webTarget.path("login");
-    Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
+	    WebTarget loginUserWebTarget = webTarget.path("login");
+	    Invocation.Builder invocationBuilder = loginUserWebTarget.request(MediaType.APPLICATION_JSON);
+	
+	    UserData userData = new UserData();
+	    userData.setName(name);
+	    userData.setPassword(password);
+	
+	    Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+	    if (response.getStatus() != Status.OK.getStatusCode()) {
+	        logger.error("Error connecting with the server. Code: {}", response.getStatus());
+	        return null; 
+	    } else {
+	        User userDataResponse = response.readEntity(User.class);
+	        logger.info("User correctly logged in");
+	        return userDataResponse;
+	    }
+	}
+    
+    public void changeUserPassword(User user, String newPassword) {
+        WebTarget changePasswordWebTarget = webTarget.path("changePassword");
+        Invocation.Builder invocationBuilder = changePasswordWebTarget.request(MediaType.APPLICATION_JSON);
 
-    UserData userData = new UserData();
-    userData.setName(name);
-    userData.setPassword(password);
+        UserData userData = new UserData();
+        userData.setName(user.getName());
+        userData.setPassword(newPassword);
+        userData.setPurse(user.getPurse());
+        userData.setType(user.getType());
 
-    Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
-    if (response.getStatus() != Status.OK.getStatusCode()) {
-        logger.error("Error connecting with the server. Code: {}", response.getStatus());
-        return null; 
-    } else {
-        User userDataResponse = response.readEntity(User.class);
-        logger.info("User correctly logged in");
-        return userDataResponse;
+        Response response = invocationBuilder.put(Entity.entity(userData, MediaType.APPLICATION_JSON));
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        } else {
+            logger.info("User password correctly updated");
+            // update the user object with the new password
+            user.setPassword(newPassword);
+        }
     }
-}
      
     
     public boolean checkUserInDatabase(String name) {
