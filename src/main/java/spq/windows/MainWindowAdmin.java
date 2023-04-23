@@ -85,6 +85,14 @@ public class MainWindowAdmin extends JFrame{
 
 		textoContrasenya.setBounds(214, 375, 143, 20);
 		contentpane.add(textoContrasenya);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(99, 11, 89, 23);
+		contentpane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(227, 11, 89, 23);
+		contentpane.add(btnNewButton_1);
 		String user_password=textoContrasenya.getText();
 
 		btnRegister.addActionListener(new ActionListener() {
