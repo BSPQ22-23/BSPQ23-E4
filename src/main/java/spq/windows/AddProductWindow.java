@@ -25,22 +25,22 @@ import spq.client.TheClient;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class MainWindowAdmin extends JFrame{
+public class AddProductWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentpane;
 	private JLabel labelNombre = new JLabel();
-	private JLabel labelContrasenya = new JLabel();
+	private JLabel labelPrice = new JLabel();
 	private JTextField textoNombre = new JTextField();
-	private JPasswordField textoContrasenya = new JPasswordField();
-	private JButton btnRegister = new JButton();
+	private JPasswordField textoPrecio = new JPasswordField();
+	private JButton btnAddProduct = new JButton();
 	private JButton btnLogOut = new JButton();
 
 	public class JNumberTextField extends JTextField {
 		private static final long serialVersionUID = 1L;
 	}
 
-	public MainWindowAdmin() {
+	public AddProductWindow() {
 
 		contentpane = new JPanel();
 		contentpane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,7 +48,7 @@ public class MainWindowAdmin extends JFrame{
 		contentpane.setLayout(null);
 		
 
-		JLabel labelTitle = new JLabel("Insert the information of the new admin");
+		JLabel labelTitle = new JLabel("Insert the information of the new product");
 		labelTitle.setFont(new Font("Roboto", Font.BOLD, 40));
 		labelTitle.setBounds(44, 35, 359, 50);
 		contentpane.add(labelTitle);
@@ -60,18 +60,18 @@ public class MainWindowAdmin extends JFrame{
 		labelNombre.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(labelNombre);
 		
-		labelContrasenya.setText("Password:");
-		labelContrasenya.setBounds(86, 375, 120, 20);
-		labelContrasenya.setOpaque(true);
-		labelContrasenya.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelContrasenya);
+		labelPrice.setText("Price:");
+		labelPrice.setBounds(86, 375, 120, 20);
+		labelPrice.setOpaque(true);
+		labelPrice.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelPrice);
 		
-		btnRegister.setForeground(SystemColor.text);
-		btnRegister.setBackground(new Color(0, 51, 255));
-		btnRegister.setBounds(227, 500, 190, 32);
-		btnRegister.setText("Register new Admin");
-		btnRegister.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(btnRegister);
+		btnAddProduct.setForeground(SystemColor.text);
+		btnAddProduct.setBackground(new Color(0, 51, 255));
+		btnAddProduct.setBounds(227, 500, 190, 32);
+		btnAddProduct.setText("Add Product");
+		btnAddProduct.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(btnAddProduct);
 		
 		btnLogOut.setBackground(SystemColor.inactiveCaptionBorder);
 		btnLogOut.setBounds(47, 500, 143, 32);
@@ -81,42 +81,50 @@ public class MainWindowAdmin extends JFrame{
 
 		textoNombre.setBounds(214, 175, 143, 20);
 		contentpane.add(textoNombre);
-		String username= textoNombre.getText();
 
-		textoContrasenya.setBounds(214, 375, 143, 20);
-		contentpane.add(textoContrasenya);
+		textoPrecio.setBounds(214, 375, 143, 20);
+		contentpane.add(textoPrecio);
 		
 		JButton btnRegisterAdminWindow = new JButton("Register Admin");
 		btnRegisterAdminWindow.setBounds(99, 11, 107, 23);
-		btnRegisterAdminWindow.setEnabled(false);
 		contentpane.add(btnRegisterAdminWindow);
 		
 		JButton btnAddProductWindow = new JButton("Add new Product");
 		btnAddProductWindow.setBounds(227, 11, 120, 23);
+		btnAddProductWindow.setEnabled(false);
 		contentpane.add(btnAddProductWindow);
-		String user_password=textoContrasenya.getText();
 
-		btnRegister.addActionListener(new ActionListener() {
+		btnRegisterAdminWindow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String hostname="localhost";
-				String  port = "8080";
-				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), 0, 1);
+				// TODO Auto-generated method stub
+				new MainWindowAdmin();
+				dispose();
 			}
 		});
 		
-	
+		btnAddProduct.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				/*String hostname="localhost";
+				String  port = "8080";
+				TheClient newclient= new TheClient(hostname, port);*/
+				//newclient.addProduct(textoNombre.getText(),textoPrecio.getText());
+				System.out.println("Okay");
+			}
+		});
+		
+		
 		btnAddProductWindow.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new AddProductWindow();
+				new MainWindowAdmin();
 				dispose();
 			}
 		});
-		
+	
 
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
@@ -132,6 +140,6 @@ public class MainWindowAdmin extends JFrame{
 		setSize(440, 600);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setTitle("Register a new Admin");
+		setTitle("Add a new Product");
 	}
 }
