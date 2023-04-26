@@ -181,7 +181,32 @@ public class Server {
 	    }
 	}
 
-	
+	@PUT
+	@Path("/updatePurse/{name}/{amount}")
+	public Response updatePurse(@PathParam("name") String name, @PathParam("amount") double amount) {
+		try {
+			tx.begin();
+			User user = pm.getObjectById(User.class, name);
+			if (user != null) {
+				user.setPurse(amount);
+				pm.makePersistent(user);
+				tx.commit();
+				logger.info("Purse updated for user '{}'", user.getName());
+				return Response.ok().build();
+			} else {
+				logger.error("User with name '{}' not found", name);
+				return Response.status(Status.NOT_FOUND).build();
+			}
+		} catch (Exception e) {
+			logger.error("Error updating purse for user '{}': {}", name, e.getMessage());
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+		}
+	}
+
 	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)

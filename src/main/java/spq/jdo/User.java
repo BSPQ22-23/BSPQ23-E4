@@ -125,4 +125,17 @@ public class User
 	public void setType(int type) {
 		this.type = type;
 	}
+
+	public boolean canBuyProduct(double productPrice) {
+		return this.purse >= productPrice;
+	}
+
+	public void increasePurse(double amount) {
+		this.purse = this.purse + amount;
+	}
+
+	public void reducePurse(double amount) {
+		this.purse = this.purse - amount;
+	}
+	
 }
