@@ -8,6 +8,13 @@ public class UserData {
 	 public UserData() {
 	        // required by serialization
 	    }
+	public UserData(String name, String password, double purse, int type) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.purse = purse;
+		this.type = type;
+	}
 	public String getName() {
 		return name;
 	}

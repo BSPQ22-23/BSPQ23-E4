@@ -6,6 +6,13 @@ public class ProductData {
 	 public ProductData() {
 	        // required by serialization
 	    }
+	 
+	public ProductData(String name, double price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}

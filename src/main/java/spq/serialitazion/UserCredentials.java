@@ -5,6 +5,13 @@ public class UserCredentials {
     private String oldPassword;
     private String newPassword;
     
+    
+	public UserCredentials(String name, String oldPassword, String newPassword) {
+		super();
+		this.name = name;
+		this.oldPassword = oldPassword;
+		this.newPassword = newPassword;
+	}
 	public String getName() {
 		return name;
 	}
