@@ -33,6 +33,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 import spq.jdo.User;
+import spq.serialitazion.ProductData;
 import spq.serialitazion.UserData;
 import spq.windows.LoginWindow;
 
@@ -81,6 +82,24 @@ public class TheClient
     	userData.setPurse(purse);
     	userData.setType(type);
     	Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+    	if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+    	
+    
+    }
+    
+    public void addProduct(String name, double price, boolean available) {
+    	WebTarget addProductWebTarget = webTarget.path("add");
+    	Invocation.Builder invocationBuilder = addProductWebTarget.request(MediaType.APPLICATION_JSON);
+		
+    	ProductData productData =new ProductData();
+    	productData.setName(name);
+    	productData.setPrice(price);
+    	productData.setAvailable(available);
+    	Response response = invocationBuilder.post(Entity.entity(productData, MediaType.APPLICATION_JSON));
     	if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 		} else {
