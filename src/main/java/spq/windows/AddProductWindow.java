@@ -32,7 +32,7 @@ public class AddProductWindow extends JFrame{
 	private JLabel labelNombre = new JLabel();
 	private JLabel labelPrice = new JLabel();
 	private JTextField textoNombre = new JTextField();
-	private JPasswordField textoPrecio = new JPasswordField();
+	private JTextField textoPrecio = new JTextField();
 	private JButton btnAddProduct = new JButton();
 	private JButton btnLogOut = new JButton();
 
@@ -106,10 +106,10 @@ public class AddProductWindow extends JFrame{
 		btnAddProduct.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*String hostname="localhost";
+				String hostname="localhost";
 				String  port = "8080";
-				TheClient newclient= new TheClient(hostname, port);*/
-				//newclient.addProduct(textoNombre.getText(),textoPrecio.getText());
+				TheClient newclient= new TheClient(hostname, port);
+				newclient.addProduct(textoNombre.getText(),Double.parseDouble(textoPrecio.getText()),false);
 				System.out.println("Okay");
 			}
 		});

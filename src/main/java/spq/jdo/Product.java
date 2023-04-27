@@ -22,7 +22,7 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PrimaryKey;
 /**
- * Definition of a User.
+ * Definition of a Product.
  */
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
