@@ -3,14 +3,16 @@ package spq.serialitazion;
 public class ProductData {
 	 private String name;
 	 private double price;
+	 private boolean available;
 	 public ProductData() {
 	        // required by serialization
 	    }
 	 
-	public ProductData(String name, double price) {
+	public ProductData(String name, double price, boolean available) {
 		super();
 		this.name = name;
 		this.price = price;
+		this.available = available;
 	}
 
 	public String getName() {
@@ -26,9 +28,17 @@ public class ProductData {
 		this.price = price;
 	}
 	
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductData [name=" + name + ", price=" + price + "]";
+		return "ProductData [name= " + name + ", price= " + price + ", available= " + available +"]";
 	}
 	 
 }

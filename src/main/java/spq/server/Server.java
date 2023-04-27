@@ -18,7 +18,9 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.logging.log4j.Logger;
 
+import spq.jdo.Product;
 import spq.jdo.User;
+import spq.serialitazion.ProductData;
 import spq.serialitazion.UserCredentials;
 import spq.serialitazion.UserData;
 
@@ -71,6 +73,47 @@ public class Server {
 				user= new User(userData.getName(),userData.getPassword(),userData.getPurse(),userData.getType());
 				pm.makePersistent(user);
 				logger.info("User created: {}", user);
+			}
+			tx.commit();
+			return Response.ok().build();
+
+			
+		}finally {
+			 if (tx.isActive())
+	            {
+	                tx.rollback();
+	            }
+		}
+	}
+	
+	
+	@POST
+	@Path("/add")
+	public Response addProduct(ProductData productData) {
+		try {
+			tx.begin();
+			logger.info("Checking whether the product already exits or not: '{}'",productData.getName());
+			Product product=null;
+			try {
+				product= pm.getObjectById(Product.class,productData.getName());
+			}catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+			}
+			logger.info("Product: {}",product);
+			if (product!=null) {
+				logger.info("Setting price product: {}", product);
+				product.setPrice(productData.getPrice());
+				logger.info("Price set product: {}", product);
+				
+				logger.info("Setting available product: {}", product);
+				product.setAvailable(productData.isAvailable());
+				logger.info("Available set product:{}", product);
+				
+			}else {
+				logger.info("Creating product: {}", product);
+				product = new Product(productData.getName(), productData.getPrice(), productData.isAvailable());
+				pm.makePersistent(product);
+				logger.info("Product created: {}", product);
 			}
 			tx.commit();
 			return Response.ok().build();

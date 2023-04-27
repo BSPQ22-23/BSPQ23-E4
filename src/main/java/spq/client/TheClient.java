@@ -90,6 +90,25 @@ public class TheClient
     
     }
     
+    /*public void addProduct(String name, double price) {
+    	WebTarget registerUserWebTarget = webTarget.path("register");
+    	Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		
+    	UserData userData =new UserData();
+    	userData.setName(name);
+    	userData.setPassword(password);
+    	userData.setPurse(purse);
+    	userData.setType(type);
+    	Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+    	if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+		} else {
+			logger.info("User correctly registered");
+		}
+    	
+    
+    }*/
+    
     
     public User loginUser(String name, String password) {
 	    WebTarget loginUserWebTarget = webTarget.path("login");

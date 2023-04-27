@@ -33,17 +33,17 @@ public class Product
     String name=null;
     
 	double price=0;
+	
+	boolean available = false;
     
-    
-    
-    public Product(String name, double price)
+    public Product(String name, double price, boolean available)
     {
         this.name = name;
         this.price = price;
-        
+        this.available = available;
     }
 
-    public String getName()
+	public String getName()
     {
         return name;
     }
@@ -60,12 +60,21 @@ public class Product
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public boolean isAvailable() {
+		return available;
+	}
 
-    public String toString()
-    {
-        return "Name : " + name + " \n Price: "+price;
-    }
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 
+	@Override
+	public String toString() {
+		return "Product [name= " + name + ", price= " + price + ", available= " + available + "]";
+	}
+
+    
 	
 
 }
