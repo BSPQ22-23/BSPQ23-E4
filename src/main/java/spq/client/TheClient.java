@@ -128,6 +128,21 @@ public class TheClient
     
     }*/
     
+    public List<ProductData> getAvailableProducts() {
+        WebTarget getAvailableProductsWebTarget = webTarget.path("available");
+        Invocation.Builder invocationBuilder = getAvailableProductsWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.get();
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+            return null;
+        } else {
+            List<ProductData> products = response.readEntity(new GenericType<List<ProductData>>() {});
+            logger.info("Available products: {}", products);
+            return products;
+        }
+    }
+
+    
     
     public User loginUser(String name, String password) {
 	    WebTarget loginUserWebTarget = webTarget.path("login");

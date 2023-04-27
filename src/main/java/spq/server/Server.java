@@ -2,6 +2,10 @@ package spq.server;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.JDOHelper;
 import javax.jdo.Transaction;
 import javax.ws.rs.Consumes;
@@ -249,6 +253,32 @@ public class Server {
 			}
 		}
 	}
+	
+	@GET
+	@Path("/available")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProductData> getAvailableProducts() {
+	    List<ProductData> products = new ArrayList<>();
+	    try {
+	        tx.begin();
+	        Query<Product> query = pm.newQuery(Product.class, "available == true");
+	        List<Product> results = (List<Product>) query.execute();
+	        for (Product product : results) {
+	            ProductData productData = new ProductData();
+	            productData.setName(product.getName());
+	            productData.setPrice(product.getPrice());
+	            productData.setAvailable(product.isAvailable());
+	            products.add(productData);
+	        }
+	        tx.commit();
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	    }
+	    return products;
+	}
+
 
 	@GET
 	@Path("/hello")

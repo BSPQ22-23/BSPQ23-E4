@@ -2,23 +2,31 @@ package spq.windows;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTable;
 
 import spq.client.TheClient;
+import spq.jdo.Product;
 import spq.jdo.User;
+import spq.serialitazion.ProductData;
 
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.datanucleus.store.types.wrappers.List;
 
 public class MainWindowUser extends JFrame{
 
@@ -106,7 +114,44 @@ public class MainWindowUser extends JFrame{
 		    }
 			
 		});
+		
+		
+		
+		/*String hostname="localhost";
+		String  port = "8080";
+		
+		TheClient newclient= new TheClient(hostname, port);
+		List<ProductData> products = (List<ProductData>) newclient.getAvailableProducts();
+		for(ProductData prod: products) {
+			
+			JPanel panel = new JPanel();
+			panel.setLayout(new GridLayout(7,0,0,0));
+			
+			//System.out.println(car.getMatriculation_number());
+			panel.add(new JLabel(prod.getName()));
+			double p = prod.getPrice();
+			String pricetext = Double.toString(prod.getPrice());
+			panel.add(new JLabel(pricetext));
+			JButton buyButton = new JButton("BUY!");
+			buyButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			
+			
+			panel.add(buyButton);
+			panel.setBorder(BorderFactory.createLineBorder(Color.black));
+			CenterPanel.add(panel);
+			CenterPanel.updateUI();
+		
+		}*/
 	}
+	
+	
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
