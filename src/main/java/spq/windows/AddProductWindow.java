@@ -109,7 +109,7 @@ public class AddProductWindow extends JFrame{
 				String hostname="localhost";
 				String  port = "8080";
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.addProduct(textoNombre.getText(),Double.parseDouble(textoPrecio.getText()),false);
+				newclient.addProduct(textoNombre.getText(),Double.parseDouble(textoPrecio.getText()),true);
 				System.out.println("Okay");
 			}
 		});
