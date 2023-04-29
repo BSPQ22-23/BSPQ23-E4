@@ -16,7 +16,7 @@ public class ProductDataTest {
     
     @Before
     public void setUp() {
-        productData = new ProductData("PC-Dell", 10.5);
+        productData = new ProductData("PC-Dell", 10.5,false);
     }
 
     @Test
