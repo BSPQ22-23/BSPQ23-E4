@@ -96,7 +96,22 @@ public class Server {
 		}
 	}
 	
-	
+	@POST
+	@Path("/buyProduct")
+		public Response buyProduct(UserData userData, @PathParam("price") Double price,@PathParam("name") String name) {
+		 tx.begin();
+	     User user = pm.getObjectById(User.class, userData.getName());
+	     Product product=pm.getObjectById(Product.class,name);
+	     if(user.canBuyProduct(product.getPrice())==true ) {
+	     user.reducePurse(product.getPrice());
+	     product.setAvailable(false);
+	     return Response.ok().build();
+	     }
+	     else {
+	    	 return Response.status(Response.Status.BAD_REQUEST).entity("Insufficient balance").build();
+	        }
+	     }
+
 	@POST
 	@Path("/add")
 	public Response addProduct(ProductData productData) {
@@ -187,26 +202,7 @@ public class Server {
 	}
 	
 	
-//	    try {
-//	        tx.begin();
-//	        logger.info("Checking user credentials for user: '{}'",userData.getName());
-//	        User user = pm.getObjectById(User.class, userData.getName());
-//	        if (user == null) {
-//	            logger.info("User not found: '{}'", userData.getName());
-//	            return Response.status(Response.Status.UNAUTHORIZED).build();
-//	        } else if (user.getPassword().equals(userData.getPassword())) {
-//	            logger.info("User credentials are valid: '{}'", userData.getName());
-//	            return Response.ok().build();
-//	            
-//	        } else {
-//	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
-//	            return Response.status(Response.Status.UNAUTHORIZED).build();
-//	        }
-//	    } finally {
-//	        if (tx.isActive()) {
-//	            tx.rollback();
-//	        }
-//	    }
+
 	
 
 	@PUT

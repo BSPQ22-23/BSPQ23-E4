@@ -57,7 +57,7 @@ import javax.ws.rs.core.Response.Status;
  */
 public class TheClient
 {
-	//coment and example
+	//coment and exampl
 	private static final String USER = "clienteparapruebas";
 	private static final String PASSWORD = "clienteparapruebas";
     
@@ -199,22 +199,16 @@ public class TheClient
             }
         }
     }
-//    public boolean buyProduct(UserData userData, ProductData productData) {
-//        WebTarget buyProductWebTarget = webTarget.path("buyproduct");
-//        Invocation.Builder invocationBuilder = buyProductWebTarget.request(MediaType.APPLICATION_JSON);
-//
-//        Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
-//        if (response.getStatus() == Status.OK.getStatusCode()) {
-//            logger.info("Product bought successfully");
-//            return true;
-//        } else if (response.getStatus() == Status.PAYMENT_REQUIRED.getStatusCode()) {
-//            logger.info("User doesn't have enough balance to buy the product");
-//            return false;
-//        } else {
-//            logger.error("Error buying the product. Code: {}", response.getStatus());
-//            return false;
-//        }
-//    }
+    public void buyProduct(User user,Double price,String name) {
+        WebTarget buyProductWebTarget= webTarget.path("buyProduct").queryParam("price", price).queryParam("name", name);;
+        Invocation.Builder invocationBuilder= buyProductWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+        if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+            System.out.println("Product bought successfully.");
+        } else {
+            System.out.println("Error buying product: " + response.readEntity(String.class));
+        }
+    }
 
     public static void main(String[] args) {
 		if (args.length != 2) {
