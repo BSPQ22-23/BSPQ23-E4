@@ -3,6 +3,7 @@ package spq.windows;
 import java.awt.EventQueue;
 
 
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,9 +25,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.util.List;
 
-import org.datanucleus.store.types.wrappers.List;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class MainWindowUser extends JFrame{
 
@@ -117,11 +118,11 @@ public class MainWindowUser extends JFrame{
 		
 		
 		
-		/*String hostname="localhost";
+		String hostname="localhost";
 		String  port = "8080";
 		
 		TheClient newclient= new TheClient(hostname, port);
-		List<ProductData> products = (List<ProductData>) newclient.getAvailableProducts();
+		List<ProductData> products = newclient.getAvailableProducts();
 		for(ProductData prod: products) {
 			
 			JPanel panel = new JPanel();
@@ -130,7 +131,7 @@ public class MainWindowUser extends JFrame{
 			//System.out.println(car.getMatriculation_number());
 			panel.add(new JLabel(prod.getName()));
 			double p = prod.getPrice();
-			String pricetext = Double.toString(prod.getPrice());
+			String pricetext = Double.toString(p);
 			panel.add(new JLabel(pricetext));
 			JButton buyButton = new JButton("BUY!");
 			buyButton.addActionListener(new ActionListener() {
@@ -148,7 +149,17 @@ public class MainWindowUser extends JFrame{
 			CenterPanel.add(panel);
 			CenterPanel.updateUI();
 		
-		}*/
+		}
+		
+		btnLogOut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new LoginWindow();
+				dispose();
+			
+			}
+		});
 	}
 	
 	
