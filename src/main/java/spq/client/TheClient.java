@@ -109,24 +109,6 @@ public class TheClient
     
     }
     
-    /*public void addProduct(String name, double price) {
-    	WebTarget registerUserWebTarget = webTarget.path("register");
-    	Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
-		
-    	UserData userData =new UserData();
-    	userData.setName(name);
-    	userData.setPassword(password);
-    	userData.setPurse(purse);
-    	userData.setType(type);
-    	Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
-    	if (response.getStatus() != Status.OK.getStatusCode()) {
-			logger.error("Error connecting with the server. Code: {}", response.getStatus());
-		} else {
-			logger.info("User correctly registered");
-		}
-    	
-    
-    }*/
     
     public List<ProductData> getAvailableProducts() {
         WebTarget getAvailableProductsWebTarget = webTarget.path("available");
@@ -217,22 +199,22 @@ public class TheClient
             }
         }
     }
-    public boolean buyProduct(UserData userData, ProductData productData) {
-        WebTarget buyProductWebTarget = webTarget.path("buyproduct");
-        Invocation.Builder invocationBuilder = buyProductWebTarget.request(MediaType.APPLICATION_JSON);
-
-        Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
-        if (response.getStatus() == Status.OK.getStatusCode()) {
-            logger.info("Product bought successfully");
-            return true;
-        } else if (response.getStatus() == Status.PAYMENT_REQUIRED.getStatusCode()) {
-            logger.info("User doesn't have enough balance to buy the product");
-            return false;
-        } else {
-            logger.error("Error buying the product. Code: {}", response.getStatus());
-            return false;
-        }
-    }
+//    public boolean buyProduct(UserData userData, ProductData productData) {
+//        WebTarget buyProductWebTarget = webTarget.path("buyproduct");
+//        Invocation.Builder invocationBuilder = buyProductWebTarget.request(MediaType.APPLICATION_JSON);
+//
+//        Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+//        if (response.getStatus() == Status.OK.getStatusCode()) {
+//            logger.info("Product bought successfully");
+//            return true;
+//        } else if (response.getStatus() == Status.PAYMENT_REQUIRED.getStatusCode()) {
+//            logger.info("User doesn't have enough balance to buy the product");
+//            return false;
+//        } else {
+//            logger.error("Error buying the product. Code: {}", response.getStatus());
+//            return false;
+//        }
+//    }
 
     public static void main(String[] args) {
 		if (args.length != 2) {

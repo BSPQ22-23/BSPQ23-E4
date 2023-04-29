@@ -293,40 +293,42 @@ public class Server {
 	public Response sayHello() {
 		return Response.ok("Hello world!").build();
 	}
-	@POST
-	@Path("/buyproduct")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response buyProduct(UserData userData, ProductData productData) {
-	    try {
-	        tx.begin();
-	        logger.info("Checking user credentials for user: '{}'", userData.getName());
-	        User user = pm.getObjectById(User.class, userData.getName());
-	        if (user == null) {
-	            logger.info("User not found: '{}'", userData.getName());
-	            return Response.status(Response.Status.UNAUTHORIZED).build();
-	        } else if (user.getPassword().equals(userData.getPassword())) {
-	            logger.info("User credentials are valid: '{}'", userData.getName());
-	            
-	            double purse = user.getPurse();
-	            double productPrice = productData.getPrice();
-	            if (purse < productPrice) {
-	                logger.info("User doesn't have enough balance to buy the product: '{}'", userData.getName());
-	                return Response.status(Response.Status.PAYMENT_REQUIRED).build();
-	            } else {
-	                user.setPurse(purse - productPrice);
-	                logger.info("User bought the product: '{}'", userData.getName());
-	                return Response.ok().build();
-	            }
-	            
-	        } else {
-	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
-	            return Response.status(Response.Status.UNAUTHORIZED).build();
-	        }
-	    } finally {
-	        if (tx.isActive()) {
-	            tx.rollback();
-	        }
-	    }
-	}}
+//	@POST
+//	@Path("/buyproduct")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response buyProduct(UserData userData, ProductData productData) {
+//	    try {
+//	        tx.begin();
+//	        logger.info("Checking user credentials for user: '{}'", userData.getName());
+//	        User user = pm.getObjectById(User.class, userData.getName());
+//	        if (user == null) {
+//	            logger.info("User not found: '{}'", userData.getName());
+//	            return Response.status(Response.Status.UNAUTHORIZED).build();
+//	        } else if (user.getPassword().equals(userData.getPassword())) {
+//	            logger.info("User credentials are valid: '{}'", userData.getName());
+//	            
+//	            double purse = user.getPurse();
+//	            double productPrice = productData.getPrice();
+//	            if (purse < productPrice) {
+//	                logger.info("User doesn't have enough balance to buy the product: '{}'", userData.getName());
+//	                return Response.status(Response.Status.PAYMENT_REQUIRED).build();
+//	            } else {
+//	                user.setPurse(purse - productPrice);
+//	                logger.info("User bought the product: '{}'", userData.getName());
+//	                return Response.ok().build();
+//	            }
+//	            
+//	        } else {
+//	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
+//	            return Response.status(Response.Status.UNAUTHORIZED).build();
+//	        }
+//	    } finally {
+//	        if (tx.isActive()) {
+//	            tx.rollback();
+//	        }
+//	    }
+//	}
+	
+}
 
