@@ -200,7 +200,7 @@ public class TheClient
         }
     }
     public void buyProduct(User user,Double price,String name) {
-        WebTarget buyProductWebTarget= webTarget.path("buyProduct").queryParam("price", price).queryParam("name", name);;
+        WebTarget buyProductWebTarget= webTarget.path("buyProduct").queryParam("price", price).queryParam("name", name);
         Invocation.Builder invocationBuilder= buyProductWebTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
         if (response.getStatus() == Response.Status.OK.getStatusCode()) {

@@ -130,16 +130,24 @@ public class MainWindowUser extends JFrame{
 			
 			//System.out.println(car.getMatriculation_number());
 			panel.add(new JLabel(prod.getName()));
+			JLabel name=new JLabel(prod.getName());
 			double p = prod.getPrice();
 			String pricetext = Double.toString(p);
+			
 			panel.add(new JLabel(pricetext));
+			JLabel priceText=(new JLabel(pricetext));
+			
+			JLabel price = new JLabel(pricetext);
 			JButton buyButton = new JButton("BUY!");
 			buyButton.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
+					String hostname="localhost";
+					String  port = "8080";
+					TheClient newclient= new TheClient(hostname, port);
+					newclient.buyProduct(u,Double.parseDouble(priceText.getText()), name.getText());
 				}
 			});
 			

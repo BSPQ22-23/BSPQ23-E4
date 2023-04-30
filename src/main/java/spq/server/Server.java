@@ -16,6 +16,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -98,13 +99,22 @@ public class Server {
 	
 	@POST
 	@Path("/buyProduct")
-		public Response buyProduct(UserData userData, @PathParam("price") Double price,@PathParam("name") String name) {
+		public Response buyProduct(UserData userData, @QueryParam("price") Double price,@QueryParam("name") String name) {
 		 tx.begin();
-	     User user = pm.getObjectById(User.class, userData.getName());
+		 
+		 User user = pm.getObjectById(User.class, userData.getName());
 	     Product product=pm.getObjectById(Product.class,name);
+	     if (user == null) {
+	            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid user data").build();
+	        }
+	        
+	        if (product == null) {
+	            return Response.status(Response.Status.BAD_REQUEST).entity("Product not found").build();
+	        }
 	     if(user.canBuyProduct(product.getPrice())==true ) {
 	     user.reducePurse(product.getPrice());
 	     product.setAvailable(false);
+	     tx.commit();
 	     return Response.ok().build();
 	     }
 	     else {
@@ -270,9 +280,10 @@ public class Server {
 	            ProductData productData = new ProductData();
 	            productData.setName(product.getName());
 	            productData.setPrice(product.getPrice());
+	            if(product.isAvailable()==true) {
 	            productData.setAvailable(product.isAvailable());
 	            products.add(productData);
-	        }
+	        }}
 	        tx.commit();
 	    } finally {
 	        if (tx.isActive()) {
@@ -289,42 +300,7 @@ public class Server {
 	public Response sayHello() {
 		return Response.ok("Hello world!").build();
 	}
-//	@POST
-//	@Path("/buyproduct")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response buyProduct(UserData userData, ProductData productData) {
-//	    try {
-//	        tx.begin();
-//	        logger.info("Checking user credentials for user: '{}'", userData.getName());
-//	        User user = pm.getObjectById(User.class, userData.getName());
-//	        if (user == null) {
-//	            logger.info("User not found: '{}'", userData.getName());
-//	            return Response.status(Response.Status.UNAUTHORIZED).build();
-//	        } else if (user.getPassword().equals(userData.getPassword())) {
-//	            logger.info("User credentials are valid: '{}'", userData.getName());
-//	            
-//	            double purse = user.getPurse();
-//	            double productPrice = productData.getPrice();
-//	            if (purse < productPrice) {
-//	                logger.info("User doesn't have enough balance to buy the product: '{}'", userData.getName());
-//	                return Response.status(Response.Status.PAYMENT_REQUIRED).build();
-//	            } else {
-//	                user.setPurse(purse - productPrice);
-//	                logger.info("User bought the product: '{}'", userData.getName());
-//	                return Response.ok().build();
-//	            }
-//	            
-//	        } else {
-//	            logger.info("User credentials are invalid for user: '{}'", userData.getName());
-//	            return Response.status(Response.Status.UNAUTHORIZED).build();
-//	        }
-//	    } finally {
-//	        if (tx.isActive()) {
-//	            tx.rollback();
-//	        }
-//	    }
-//	}
+
 	
 }
 
