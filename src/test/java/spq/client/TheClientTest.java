@@ -4,6 +4,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,6 +30,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import spq.client.TheClient;
+import spq.jdo.User;
 import spq.serialitazion.ProductData;
 import spq.serialitazion.UserData;
 
@@ -94,6 +97,51 @@ public class TheClientTest {
         assertEquals(true, productDataEntityCaptor.getValue().getEntity().isAvailable());
         
    }
+    
+    /*@Test
+    public void testLoginUser() {
+	    when(webTarget.path("login")).thenReturn(webTarget);
+	    User user = new User("admin", "admin", 0, 1);
+	    Response response = webTarget.request().get();
+	    when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
+    	cli.registerUser("admin", "admin", 0, 1);
+    	
+	
+	    User result = cli.loginUser("admin", "admin");
+	
+	    assertEquals("admin", result.getName());
+	    assertEquals("admin", result.getPassword());
+	    assertEquals(0, result.getPurse(), 0);
+	    assertEquals(1, result.getType());
+	
+	    verify(webTarget.request(MediaType.APPLICATION_JSON)).post(userDataEntityCaptor.capture());
+	    assertEquals("admin", userDataEntityCaptor.getValue().getEntity().getName());
+	    assertEquals("admin", userDataEntityCaptor.getValue().getEntity().getPassword());
+	    assertEquals(0, userDataEntityCaptor.getValue().getEntity().getPurse(),0);
+	    assertEquals(1, userDataEntityCaptor.getValue().getEntity().getType());
+    }*/
+    
+   /*@Test
+    public void testGetAvailableProducts() {
+        // Configurar el comportamiento de la simulación
+        when(webTarget.path("available")).thenReturn(webTarget);
+        Response response = webTarget.request().get();
+        when(webTarget.request(MediaType.APPLICATION_JSON).get()).thenReturn(response);
+
+        // Agregar un producto
+        cli.addProduct("Prod", 12.23, true);
+
+        // Ejecutar el método y comprobar el resultado
+        List<ProductData> products = cli.getAvailableProducts();
+        assertNotNull("La lista de productos no debe ser nula", products);
+        assertEquals("El tamaño de la lista de productos es incorrecto", 1, products.size());
+
+        // Verificar la invocación de método en el cliente web
+        verify(webTarget.request(MediaType.APPLICATION_JSON)).get();
+    }*/
+
+
+
     
 }
 
