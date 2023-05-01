@@ -72,7 +72,7 @@ public class TheClient
 		webTarget = client.target(String.format("http://%s:%s/rest/resource", hostname, port));
 	}
     
-    public void registerUser(String name, String password,double purse, int type) {
+    /*public void registerUser(String name, String password,double purse, int type) {
     	WebTarget registerUserWebTarget = webTarget.path("register");
     	Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
 		
@@ -89,9 +89,32 @@ public class TheClient
 		}
     	
     
+    }*/
+    
+    public boolean registerUser(String name, String password,double purse, int type) {
+    	WebTarget registerUserWebTarget = webTarget.path("register");
+    	Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
+		
+    	UserData userData =new UserData();
+    	userData.setName(name);
+    	userData.setPassword(password);
+    	userData.setPurse(purse);
+    	userData.setType(type);
+    	Response response = invocationBuilder.post(Entity.entity(userData, MediaType.APPLICATION_JSON));
+    	if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			return false;
+		} else {
+			logger.info("User correctly registered");
+			return true;
+		}
+    	
+    
     }
     
-    public void addProduct(String name, double price, boolean available) {
+    
+    
+    public boolean addProduct(String name, double price, boolean available) {
     	WebTarget addProductWebTarget = webTarget.path("add");
     	Invocation.Builder invocationBuilder = addProductWebTarget.request(MediaType.APPLICATION_JSON);
 		
@@ -102,8 +125,10 @@ public class TheClient
     	Response response = invocationBuilder.post(Entity.entity(productData, MediaType.APPLICATION_JSON));
     	if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			return false;
 		} else {
 			logger.info("User correctly registered");
+			return true;
 		}
     	
     

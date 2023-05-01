@@ -1,4 +1,4 @@
-/*package spq.windows;
+package spq.windows;
 
 import static org.junit.Assert.*;
 
@@ -92,4 +92,4 @@ public class RegisterWindowTest {
         textoPurse.setText(formato.format(0));
 }
     
-}*/
+}
