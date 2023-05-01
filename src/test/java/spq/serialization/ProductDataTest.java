@@ -43,6 +43,6 @@ public class ProductDataTest {
 
     @Test
     public void testToString() {
-        assertEquals("ProductData [name=PC-Dell, price=10.5]", productData.toString());
+        assertEquals("ProductData [name= PC-Dell, price= 10.5, available= false]", productData.toString());
     }
 }

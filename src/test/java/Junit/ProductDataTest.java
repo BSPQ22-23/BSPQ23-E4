@@ -1,4 +1,4 @@
-package Junit;
+/*package Junit;
 
 import static org.junit.Assert.*;
 
@@ -45,4 +45,4 @@ public class ProductDataTest {
     public void testToString() {
         assertEquals("ProductData [name=PC-Dell, price=10.5]", productData.toString());
     }
-}
+}*/

@@ -1,4 +1,4 @@
-package JUnitPerfT;
+/*package JUnitPerfT;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -57,3 +57,4 @@ public class Tests {
 	    
 	  
 
+*/

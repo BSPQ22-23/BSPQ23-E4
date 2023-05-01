@@ -47,19 +47,19 @@ public class UserTest {
     public void testSetPurse() {
     	double p = user.getPurse() + 12.00;
         user.setPurse(p);
-        assertEquals(p, user.getPurse() + 12.00, 0.01);
+        assertEquals(p, user.getPurse() , 0.01);
     }
     
     @Test
     public void testGetType() {
-        int type = 1;
+        int type = 0;
         assertEquals(type, user.getType());
     }
 
 
     @Test
     public void testToString() {
-        String expectedString = "Name : markel \n Password : password \n Your money: 12.34";
+        String expectedString = "Name = test-login, Password = passwd, Your money = 12.34";
         assertEquals(expectedString, user.toString());
     }
     

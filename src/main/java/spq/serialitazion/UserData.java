@@ -41,7 +41,7 @@ public class UserData {
 	}
 	@Override
 	public String toString() {
-		return "UserData [name=" + name + ", password=" + password + "]";
+		return "UserData [name=" + name + ", password=" + password + ", purse=" + purse + ", type=" + type+"]";
 	}
 	 
 }

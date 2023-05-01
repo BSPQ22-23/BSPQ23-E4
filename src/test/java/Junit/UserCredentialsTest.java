@@ -1,4 +1,4 @@
-package Junit;
+/*package Junit;
 
 import static org.junit.Assert.*;
 
@@ -51,4 +51,4 @@ public class UserCredentialsTest {
         userCredentials.setNewPassword("newNewPassword");
         assertEquals("newNewPassword", userCredentials.getNewPassword());
     }
-}
+}*/

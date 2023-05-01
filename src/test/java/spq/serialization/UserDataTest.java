@@ -62,7 +62,7 @@ public class UserDataTest {
 
     @Test
     public void testToString() {
-        String expectedString = "UserData [name=markel, password=password, purse =12.34, type=0]";
+        String expectedString = "UserData [name=markel, password=password, purse=100.0, type=1]";
         assertEquals(expectedString, userData.toString());
     }
 }

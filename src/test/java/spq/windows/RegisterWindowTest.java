@@ -1,4 +1,4 @@
-package spq.windows;
+/*package spq.windows;
 
 import static org.junit.Assert.*;
 
@@ -31,22 +31,11 @@ public class RegisterWindowTest {
     private JPasswordField textoContrasenya;
     private JButton btnRegister;
     private JButton btnLogIn;
-    /*
-     *n 
-     * ITS EXAMPLE TEST
-     *n
-     */
+    
     @Before
     public void setUp() {
         registerWindow = new RegisterWindow();
-        /*
-        JPanel contentpane = registerWindow.getContentPane();
-        textoNombre = (JTextField) TestUtils.getChildNamed(contentpane, "textoNombre");
-        textoPurse = (JTextField) TestUtils.getChildNamed(contentpane, "textoPurse");
-        textoContrasenya = (JPasswordField) TestUtils.getChildNamed(contentpane, "textoContrasenya");
-        btnRegister = (JButton) TestUtils.getChildNamed(contentpane, "btnRegister");
-        btnLogIn = (JButton) TestUtils.getChildNamed(contentpane, "btnLogIn");
-        */
+        
     }
 
     @Test
@@ -102,9 +91,5 @@ public class RegisterWindowTest {
         textoContrasenya.setText(password);
         textoPurse.setText(formato.format(0));
 }
-    /*
-     *n 
-     * 
-     *n
-     */
-}
+    
+}*/

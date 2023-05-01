@@ -38,6 +38,6 @@ public class ProductTest {
 
     @Test
     public void testToString() {
-        assertEquals("p [name=PC-Dell, price=10.5]", p.toString());
+        assertEquals("Product [name= PC-Dell, price= 10.5, available= false]", p.toString());
     }
 }

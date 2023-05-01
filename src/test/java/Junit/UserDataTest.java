@@ -1,4 +1,4 @@
-package Junit;
+/*package Junit;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -65,4 +65,4 @@ public class UserDataTest {
         String expectedString = "UserData [name=markel, password=password]";
         assertEquals(expectedString, userData.toString());
     }
-}
+}*/

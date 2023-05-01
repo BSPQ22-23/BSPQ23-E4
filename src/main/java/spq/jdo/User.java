@@ -107,7 +107,7 @@ public class User
 	 */
     public String toString()
     {
-        return "Name : " + name + " \n Password : " + password + " \n" +"Your money:"+purse;
+        return "Name = " + name + ", Password = " + password + ", Your money = "+purse;
     }
 
 	public double getPurse() {
