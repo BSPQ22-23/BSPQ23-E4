@@ -146,8 +146,12 @@ public class MainWindowUser extends JFrame{
 					// TODO Auto-generated method stub
 					String hostname="localhost";
 					String  port = "8080";
+					boolean a = false;
 					TheClient newclient= new TheClient(hostname, port);
-					newclient.buyProduct(u,Double.parseDouble(priceText.getText()), name.getText());
+					a=newclient.buyProduct(u,Double.parseDouble(priceText.getText()), name.getText());
+					if (a=true) {
+						buyButton.setEnabled(false);
+					}
 				}
 			});
 			

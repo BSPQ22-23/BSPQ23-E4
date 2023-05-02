@@ -224,14 +224,16 @@ public class TheClient
             }
         }
     }
-    public void buyProduct(User user,Double price,String name) {
+    public boolean buyProduct(User user,Double price,String name) {
         WebTarget buyProductWebTarget= webTarget.path("buyProduct").queryParam("price", price).queryParam("name", name);
         Invocation.Builder invocationBuilder= buyProductWebTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
         if (response.getStatus() == Response.Status.OK.getStatusCode()) {
             System.out.println("Product bought successfully.");
+            return true;
         } else {
             System.out.println("Error buying product: " + response.readEntity(String.class));
+            return false;
         }
     }
 
