@@ -21,9 +21,9 @@ jobs:
           run: mysql -uroot -proot < sql/create-productsdb.sql 
 
         - name: Prepare tables with datanucleus  
-        run: |
-          export JDK_JAVA_OPTIONS="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED"
-          mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
-          
+          run: |
+            export JDK_JAVA_OPTIONS="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED"
+            mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
+
         - name: Build with Maven including tests
           run: mvn --batch-mode --update-snapshots test
