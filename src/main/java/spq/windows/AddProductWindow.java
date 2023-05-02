@@ -43,6 +43,7 @@ public class AddProductWindow extends JFrame{
 	public AddProductWindow() {
 
 		contentpane = new JPanel();
+		contentpane.setBackground(new Color(255, 222, 173));
 		contentpane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentpane);
 		contentpane.setLayout(null);

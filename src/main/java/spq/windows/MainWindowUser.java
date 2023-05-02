@@ -2,8 +2,6 @@ package spq.windows;
 
 import java.awt.EventQueue;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,8 +26,9 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 
-public class MainWindowUser extends JFrame{
+public class MainWindowUser extends JFrame {
 
 	private JFrame windowUser;
 	private JTable tableProduct;
@@ -46,17 +45,34 @@ public class MainWindowUser extends JFrame{
 	 */
 	private void initialize(User u) {
 		windowUser = new JFrame();
-		windowUser.setBounds(100, 100, 450, 300);
+		windowUser.setBounds(100, 100, 670, 399);
 		windowUser.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel CenterPanel = new JPanel();
+		CenterPanel.setBackground(new Color(255, 235, 205));
 		windowUser.getContentPane().add(CenterPanel, BorderLayout.CENTER);
 
 		tableProduct = new JTable();
+		tableProduct.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Name", "Price", "Available" }
+		/*
+		 * ------------With these changes, the table will display the three additional columns we have added, and each row will contain the corresponding product data.-------
+		 * 
+		 * 
+		 * List<ProductData> products = newclient.getAvailableProducts();
+		 * ProductTableModel model = (ProductTableModel) tableProduct.getModel(); for
+		 * (ProductData prod : products) { Object[] rowData = {prod.getName(),
+		 * prod.getPrice(), prod.isAvailable()}; model.addRow(rowData); }
+		 * 
+		 */
+		));
+
+		tableProduct.setForeground(new Color(192, 192, 192));
 		CenterPanel.add(tableProduct);
+		DefaultTableModel def = new DefaultTableModel();
+		def.addColumn(u);
 
 		JPanel SouthPanel = new JPanel();
-		SouthPanel.setBackground(Color.WHITE);
+		SouthPanel.setBackground(new Color(255, 255, 240));
 		windowUser.getContentPane().add(SouthPanel, BorderLayout.SOUTH);
 
 		JButton btnLogOut = new JButton("LogOut");
@@ -82,61 +98,74 @@ public class MainWindowUser extends JFrame{
 						.addContainerGap(22, Short.MAX_VALUE)));
 		SouthPanel.setLayout(gl_SouthPanel);
 
+		JPanel NorthPanel = new JPanel();
+		NorthPanel.setBackground(new Color(255, 235, 205));
+		windowUser.getContentPane().add(NorthPanel, BorderLayout.NORTH);
+
+		JLabel lblTitle = new JLabel("Welcome ");
+		lblTitle.setFont(new Font("Kunstler Script", Font.PLAIN, 24));
+		GroupLayout gl_NorthPanel = new GroupLayout(NorthPanel);
+		gl_NorthPanel
+				.setHorizontalGroup(gl_NorthPanel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+						gl_NorthPanel.createSequentialGroup().addContainerGap(255, Short.MAX_VALUE)
+								.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
+								.addGap(233)));
+		gl_NorthPanel.setVerticalGroup(gl_NorthPanel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
+				gl_NorthPanel.createSequentialGroup().addContainerGap(14, Short.MAX_VALUE).addComponent(lblTitle)
+						.addContainerGap()));
+		NorthPanel.setLayout(gl_NorthPanel);
+
 		btnchangePassword.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*// Solicita al usuario que ingrese su nueva contraseña
-				String newPassword = JOptionPane.showInputDialog("Introduce la nueva contraseña: ");
+				/*
+				 * // Solicita al usuario que ingrese su nueva contraseña String newPassword =
+				 * JOptionPane.showInputDialog("Introduce la nueva contraseña: ");
+				 * 
+				 * // Actualiza la contraseña del usuario actual try { // Creo que el metodo se
+				 * haria asi, me falta en la parte de BBDD String hostname = "localhost"; String
+				 * port = "8080"; TheClient newclient = new TheClient(hostname, port);
+				 * newclient.changeUserPassword(u, newPassword);
+				 * JOptionPane.showMessageDialog(null,
+				 * "La contraseña se ha actualizado correctamente."); } catch (Exception ex) {
+				 * JOptionPane.showMessageDialog(null,
+				 * "Se produjo un error al actualizar la contraseña: " + ex.getMessage()); }
+				 */
 
-				// Actualiza la contraseña del usuario actual
-				try {
-					// Creo que el metodo se haria asi, me falta en la parte de BBDD
-					String hostname = "localhost";
-					String port = "8080";
-					TheClient newclient = new TheClient(hostname, port);
-					newclient.changeUserPassword(u, newPassword);
-					JOptionPane.showMessageDialog(null, "La contraseña se ha actualizado correctamente.");
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null,
-							"Se produjo un error al actualizar la contraseña: " + ex.getMessage());
-				}*/
-				
 				String newPassword = JOptionPane.showInputDialog("Introduce the new Password: ");
-		    	User neu = new User(u.getName(), newPassword, u.getPurse(), 0);
-		    	String hostname="localhost";
-				String  port = "8080";
-				
-				TheClient newclient= new TheClient(hostname, port);
-				//newclient.changeUserPassword(u, newPassword);
+				User neu = new User(u.getName(), newPassword, u.getPurse(), 0);
+				String hostname = "localhost";
+				String port = "8080";
+
+				TheClient newclient = new TheClient(hostname, port);
+				// newclient.changeUserPassword(u, newPassword);
 				newclient.deleteUser(u);
 				newclient.registerUser(neu.getName(), neu.getPassword(), neu.getPurse(), 0);
 				new LoginWindow();
 				dispose();
-		    }
-			
+			}
+
 		});
-		
-		
-		
-		String hostname="localhost";
-		String  port = "8080";
-		
-		TheClient newclient= new TheClient(hostname, port);
+
+		String hostname = "localhost";
+		String port = "8080";
+
+		TheClient newclient = new TheClient(hostname, port);
 		List<ProductData> products = newclient.getAvailableProducts();
-		for(ProductData prod: products) {
-			
+		for (ProductData prod : products) {
+
 			JPanel panel = new JPanel();
-			panel.setLayout(new GridLayout(7,0,0,0));
-			
-			//System.out.println(car.getMatriculation_number());
+			panel.setLayout(new GridLayout(7, 0, 0, 0));
+
+			// System.out.println(car.getMatriculation_number());
 			panel.add(new JLabel(prod.getName()));
-			JLabel name=new JLabel(prod.getName());
+			JLabel name = new JLabel(prod.getName());
 			double p = prod.getPrice();
 			String pricetext = Double.toString(p);
-			
+
 			panel.add(new JLabel(pricetext));
-			JLabel priceText=(new JLabel(pricetext));
-			
+			JLabel priceText = (new JLabel(pricetext));
+
 			JLabel price = new JLabel(pricetext);
 			JButton buyButton = new JButton("BUY!");
 			buyButton.addActionListener(new ActionListener() {
@@ -144,37 +173,34 @@ public class MainWindowUser extends JFrame{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					String hostname="localhost";
-					String  port = "8080";
+					String hostname = "localhost";
+					String port = "8080";
 					boolean a = false;
-					TheClient newclient= new TheClient(hostname, port);
-					a=newclient.buyProduct(u,Double.parseDouble(priceText.getText()), name.getText());
-					if (a=true) {
+					TheClient newclient = new TheClient(hostname, port);
+					a = newclient.buyProduct(u, Double.parseDouble(priceText.getText()), name.getText());
+					if (a = true) {
 						buyButton.setEnabled(false);
 					}
 				}
 			});
-			
-			
+
 			panel.add(buyButton);
 			panel.setBorder(BorderFactory.createLineBorder(Color.black));
 			CenterPanel.add(panel);
 			CenterPanel.updateUI();
-		
+
 		}
-		
+
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				new LoginWindow();
 				dispose();
-			
+
 			}
 		});
 	}
-	
-	
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
