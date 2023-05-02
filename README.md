@@ -33,6 +33,14 @@ Run the following command to generate the Javadoc documentation inside the *targ
 
       mvn javadoc:javadoc
 
+Before running the performance tests, type this only once in your cmd : 
+
+      set JDK_JAVA_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED
+
+Run the tests : 
+
+      mvn test
+
 ## ✒️ Authors
 Mikel
 Ana   
