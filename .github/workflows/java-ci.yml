@@ -20,11 +20,11 @@ jobs:
         - name: Set up the database  
           run: mysql -uroot -proot < sql/create-productsdb.sql 
 
-        - name: Prepare tables with datanucleus  
-          run: mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
-
         - name: include options for performance tests
           run: export JDK_JAVA_OPTIONS="--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED"
+
+        - name: Prepare tables with datanucleus  
+          run: mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
 
         - name: Build with Maven including tests
           run: mvn --batch-mode --update-snapshots test
