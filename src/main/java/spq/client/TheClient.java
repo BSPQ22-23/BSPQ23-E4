@@ -58,14 +58,19 @@ import javax.ws.rs.core.Response.Status;
 public class TheClient
 {
 	//coment and exampl
-	private static final String USER = "clienteparapruebas";
-	private static final String PASSWORD = "clienteparapruebas";
+	private static final String USER = "client";
+	private static final String PASSWORD = "password";
     
 	protected static final Logger logger = LogManager.getLogger();
     private Client client;
     private WebTarget webTarget;
 	
     
+    /**
+     * Constructor for TheClient class that creates a new instance of a web client with a specified hostname and port
+     * @param hostname A string representing the hostname of the server
+     * @param port A string representing the port number of the server
+     */
     
     public TheClient(String hostname, String port) {
 		client = ClientBuilder.newClient();
@@ -91,6 +96,16 @@ public class TheClient
     
     }*/
     
+    /**
+     * Registers a new user in the system with the given name, password, purse and type
+     * @param name The name of the user to be registered
+     * @param password The password of the user to be registered
+     * @param purse The initial amount of money in the user's purse
+     * @param type The type of the user to be registered (0 for regular user, 1 for administrator)
+     * @return A boolean indicating whether the registration was successful or not
+     */
+    
+    
     public boolean registerUser(String name, String password,double purse, int type) {
     	WebTarget registerUserWebTarget = webTarget.path("register");
     	Invocation.Builder invocationBuilder = registerUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -112,7 +127,13 @@ public class TheClient
     
     }
     
-    
+    /**
+     * Add a new product to the inventory
+     * @param name The name of the product
+     * @param price The price of the product
+     * @param available Whether the product is available or not
+     * @return True if the product was successfully added, false otherwise
+     */
     
     public boolean addProduct(String name, double price, boolean available) {
     	WebTarget addProductWebTarget = webTarget.path("add");
@@ -134,7 +155,10 @@ public class TheClient
     
     }
     
-    
+    /**
+     * Retrieves the list of available products from the server
+     * @return a list of ProductData objects representing the available products, or null if an error occurred
+     */
     public List<ProductData> getAvailableProducts() {
         WebTarget getAvailableProductsWebTarget = webTarget.path("available");
         Invocation.Builder invocationBuilder = getAvailableProductsWebTarget.request(MediaType.APPLICATION_JSON);
@@ -150,6 +174,18 @@ public class TheClient
     }
 
     
+
+    
+
+    
+
+    
+    /**
+     * Logs in a user with the given name and password, and returns the corresponding User object
+     * @param name the name of the user
+     * @param password the password of the user
+     * @return the User object of the logged in user, or null if there was an error logging in
+     */
     
     public User loginUser(String name, String password) {
 	    WebTarget loginUserWebTarget = webTarget.path("login");
@@ -169,6 +205,12 @@ public class TheClient
 	        return userDataResponse;
 	    }
 	}
+    
+    /**
+     * Changes the password of a user
+     * @param user The user whose password will be changed
+     * @param newPassword The new password to set for the user
+     */
     
     public void changeUserPassword(User user, String newPassword) {
         WebTarget changePasswordWebTarget = webTarget.path("changePassword");
@@ -192,6 +234,14 @@ public class TheClient
         }
     }
     
+
+    
+    
+    /**
+     * Delete a user from the server
+     * @param user The user to be deleted
+     */
+    
     public void deleteUser(User user) {
         WebTarget deleteUserWebTarget = webTarget.path("deleteUser");
         Invocation.Builder invocationBuilder = deleteUserWebTarget.request(MediaType.APPLICATION_JSON);
@@ -203,7 +253,12 @@ public class TheClient
             logger.info("User {} correctly deleted", user.getName());
         }
     }
-     
+    
+    /**
+     * Check if a user exists in the database by their name
+     * @param name The name of the user to check
+     * @return True if the user exists in the database, false otherwise
+     */
     
     public boolean checkUserInDatabase(String name) {
         WebTarget checkUserWebTarget = webTarget.path("users").queryParam("name", name);
@@ -224,6 +279,15 @@ public class TheClient
             }
         }
     }
+    
+    /**
+     * 
+     * @param user
+     * @param price
+     * @param name
+     * @return
+     */
+    
     public boolean buyProduct(User user,Double price,String name) {
         WebTarget buyProductWebTarget= webTarget.path("buyProduct").queryParam("price", price).queryParam("name", name);
         Invocation.Builder invocationBuilder= buyProductWebTarget.request(MediaType.APPLICATION_JSON);
