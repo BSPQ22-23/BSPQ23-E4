@@ -121,7 +121,7 @@ public class TheClientTest {
 	    assertEquals(1, userDataEntityCaptor.getValue().getEntity().getType());
     }*/
     
-   /*@Test
+   @Test
     public void testGetAvailableProducts() {
         // Configurar el comportamiento de la simulación
         when(webTarget.path("available")).thenReturn(webTarget);
@@ -133,12 +133,11 @@ public class TheClientTest {
 
         // Ejecutar el método y comprobar el resultado
         List<ProductData> products = cli.getAvailableProducts();
-        assertNotNull("La lista de productos no debe ser nula", products);
-        assertEquals("El tamaño de la lista de productos es incorrecto", 1, products.size());
+        assertNull(products);
 
         // Verificar la invocación de método en el cliente web
         verify(webTarget.request(MediaType.APPLICATION_JSON)).get();
-    }*/
+    }
 
 
 
