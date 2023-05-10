@@ -41,6 +41,10 @@ Run the tests :
 
       mvn test
 
+Generate documentation : 
+
+      mvn doxygen:report
+
 ## ✒️ Authors
 Mikel
 Ana   
