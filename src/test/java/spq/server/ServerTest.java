@@ -41,6 +41,12 @@ public class ServerTest {
     @Mock
     private Transaction transaction;
 
+    /**
+     * Set up the test environment by initializing the required objects and dependencies.
+     * This method is executed before each test case.
+     * It initializes the mock objects, such as the PersistenceManagerFactory, and configures their behavior.
+     * The tested object, Server, is instantiated with the mock dependencies.
+     */
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -58,6 +64,11 @@ public class ServerTest {
         }
     }
 
+    /**
+     * This method tests the registration of a user in the server.
+     * It verifies that the user is correctly registered and that the password is set.
+     * It also checks the response status of the registration process.
+     */
     @Test
     public void testRegisterUser() {
         // prepare mock Persistence Manager to return User
