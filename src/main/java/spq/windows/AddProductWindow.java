@@ -94,6 +94,10 @@ public class AddProductWindow extends JFrame{
 		btnAddProductWindow.setBounds(227, 11, 120, 23);
 		btnAddProductWindow.setEnabled(false);
 		contentpane.add(btnAddProductWindow);
+		
+		/**
+		 * Button to go to the window for adding new admins in the database
+		 */
 
 		btnRegisterAdminWindow.addActionListener(new ActionListener() {
 			@Override
@@ -103,6 +107,11 @@ public class AddProductWindow extends JFrame{
 				dispose();
 			}
 		});
+		
+		
+		/**
+		 *Button to add a new product in the database 
+		 */
 		
 		btnAddProduct.addActionListener(new ActionListener() {
 			@Override
@@ -115,7 +124,10 @@ public class AddProductWindow extends JFrame{
 			}
 		});
 		
-		
+		/**
+		 * Button to go to the window to add a product to the database.
+		 * Since we are already in this window, this button is irrelevant is not enabled
+		 */
 		btnAddProductWindow.addActionListener(new ActionListener() {
 			
 			@Override
@@ -127,6 +139,9 @@ public class AddProductWindow extends JFrame{
 		});
 	
 
+		/**
+		 * Button to log out and return to the login window
+		 */
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -96,6 +96,10 @@ public class MainWindowAdmin extends JFrame{
 		contentpane.add(btnAddProductWindow);
 		String user_password=textoContrasenya.getText();
 
+		
+		/**
+		 * Button to register a new admin in the database using the method register user (with its rules and everything)
+		 */
 		btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -106,7 +110,10 @@ public class MainWindowAdmin extends JFrame{
 			}
 		});
 		
-	
+		/**
+		 * Button to go to the window for adding new products in the database
+		 */
+		
 		btnAddProductWindow.addActionListener(new ActionListener() {
 			
 			@Override
@@ -117,7 +124,9 @@ public class MainWindowAdmin extends JFrame{
 			}
 		});
 		
-
+		/**
+		 * Button to log out and return to the login window
+		 */
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

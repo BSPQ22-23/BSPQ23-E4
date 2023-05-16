@@ -164,6 +164,9 @@ public class RegisterWindow extends JFrame {
 		contentpane.add(textoContrasenya);
 		String user_password=textoContrasenya.getText();
 
+		/**
+		 * Button to register a new user in the database using the method register user (with its rules and everything)
+		 */
 		btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -186,7 +189,9 @@ public class RegisterWindow extends JFrame {
 		});
 		
 	
-
+		/**
+		 * Button to return to the main window
+		 */
 		btnLogIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
