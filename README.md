@@ -45,6 +45,11 @@ Generate documentation :
 
       mvn doxygen:report
 
+Move the html documentation to docs directory :
+
+      mvn validate
+
+
 ## ✒️ Authors
 Mikel
 Ana   

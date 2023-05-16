@@ -1,0 +1,10 @@
+digraph "spq.jdo.User.getPurse"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="spq.jdo.User.getPurse",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="spq.client.TheClient.change\lUserPassword",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1client_1_1_the_client.html#a661dc844170b3bee25e1c439a41176a7",tooltip=" "];
+}

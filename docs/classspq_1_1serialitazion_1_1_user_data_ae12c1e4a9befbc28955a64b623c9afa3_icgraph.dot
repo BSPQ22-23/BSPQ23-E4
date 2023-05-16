@@ -1,0 +1,24 @@
+digraph "spq.serialitazion.UserData.setPassword"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="spq.serialitazion.UserData.set\lPassword",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="spq.client.TheClient.change\lUserPassword",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1client_1_1_the_client.html#a661dc844170b3bee25e1c439a41176a7",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="spq.client.TheClient.loginUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1client_1_1_the_client.html#a44d62b5e8253c3dadb3c805afcc497e6",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="spq.windows.LoginWindow.\lLoginWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1windows_1_1_login_window.html#ac21f858274217aed75608436780bc9a6",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="spq.windows.LoginWindow.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1windows_1_1_login_window.html#a21d5dc595b96d865c7efd9429c3077ea",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="spq.client.TheClient.registerUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809",tooltip=" "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="spq.client.TheClient.main",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1client_1_1_the_client.html#ae6edad5c28753b899d2ade7ec6e8b823",tooltip=" "];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="spq.windows.MainWindowAdmin.\lMainWindowAdmin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1windows_1_1_main_window_admin.html#a6f184e059ccaa33595489cf5e29004c3",tooltip=" "];
+  Node6 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="spq.windows.RegisterWindow.\lRegisterWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1windows_1_1_register_window.html#ae6fb67636b4a8460b21e18d4aadf7f94",tooltip=" "];
+}

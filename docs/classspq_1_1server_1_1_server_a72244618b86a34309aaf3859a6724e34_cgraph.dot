@@ -1,0 +1,18 @@
+digraph "spq.server.Server.buyProduct"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="spq.server.Server.buyProduct",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="spq.jdo.User.canBuyProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1jdo_1_1_user.html#a8b311680468adcb251965c2a597c9ce5",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="spq.jdo.User.getName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1jdo_1_1_user.html#ae0a55c17a82e8855530327cbbc15d0dd",tooltip=" "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="spq.jdo.Product.getPrice",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1jdo_1_1_product.html#a9e051b46a825ceccf228f94739d0a626",tooltip=" "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="spq.jdo.User.reducePurse",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1jdo_1_1_user.html#a99fcb18fa704420ef2d804b37723d85f",tooltip=" "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="spq.jdo.Product.setAvailable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1jdo_1_1_product.html#a327299632f85c380c44e3d21a1bfce46",tooltip=" "];
+}

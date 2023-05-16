@@ -1,0 +1,12 @@
+digraph "spq.client.TheClient.loginUser"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="spq.client.TheClient.loginUser",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="spq.serialitazion.UserData.setName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1serialitazion_1_1_user_data.html#ad3367a8303a09273808ce0c03b730a2e",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="spq.serialitazion.UserData.set\lPassword",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1serialitazion_1_1_user_data.html#ae12c1e4a9befbc28955a64b623c9afa3",tooltip=" "];
+}
