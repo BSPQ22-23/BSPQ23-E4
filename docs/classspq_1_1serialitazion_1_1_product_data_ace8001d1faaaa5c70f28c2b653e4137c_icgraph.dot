@@ -10,5 +10,5 @@ digraph "spq.serialitazion.ProductData.setAvailable"
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="spq.windows.AddProductWindow.\lAddProductWindow",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1windows_1_1_add_product_window.html#a6d00a61ba9051b13bc4ad45616ad81a9",tooltip=" "];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="spq.server.Server.getAvailable\lProducts",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1server_1_1_server.html#a1ecfc05a8a6360969ca1fb670a8789b6",tooltip=" "];
+  Node4 [label="spq.server.Server.getAvailable\lProducts",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1server_1_1_server.html#a1ecfc05a8a6360969ca1fb670a8789b6",tooltip="Retrieves a list of available products."];
 }

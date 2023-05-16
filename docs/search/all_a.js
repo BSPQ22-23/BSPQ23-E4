@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['reducepurse_34',['reducePurse',['../classspq_1_1jdo_1_1_user.html#a99fcb18fa704420ef2d804b37723d85f',1,'spq::jdo::User']]],
-  ['registeruser_35',['registerUser',['../classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809',1,'spq.client.TheClient.registerUser()'],['../classspq_1_1server_1_1_server.html#a14ac3f5e49e230b828076c5df4079d53',1,'spq.server.Server.registerUser()']]],
-  ['registerwindow_36',['RegisterWindow',['../classspq_1_1windows_1_1_register_window.html#ae6fb67636b4a8460b21e18d4aadf7f94',1,'spq.windows.RegisterWindow.RegisterWindow()'],['../classspq_1_1windows_1_1_register_window.html',1,'spq.windows.RegisterWindow']]],
-  ['registerwindow_2ejava_37',['RegisterWindow.java',['../_register_window_8java.html',1,'']]]
+  ['product_31',['Product',['../classspq_1_1jdo_1_1_product.html#ae1d5f10be2cce61444de4722f6544be6',1,'spq.jdo.Product.Product()'],['../classspq_1_1jdo_1_1_product.html',1,'spq.jdo.Product']]],
+  ['product_2ejava_32',['Product.java',['../_product_8java.html',1,'']]],
+  ['productdata_33',['ProductData',['../classspq_1_1serialitazion_1_1_product_data.html#a22b8d9b3049e84d72eca0bee8d409995',1,'spq.serialitazion.ProductData.ProductData()'],['../classspq_1_1serialitazion_1_1_product_data.html#ae05d4136f616a3cdb5be434750754ce8',1,'spq.serialitazion.ProductData.ProductData(String name, double price, boolean available)'],['../classspq_1_1serialitazion_1_1_product_data.html',1,'spq.serialitazion.ProductData']]],
+  ['productdata_2ejava_34',['ProductData.java',['../_product_data_8java.html',1,'']]]
 ];

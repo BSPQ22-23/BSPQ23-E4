@@ -8,5 +8,5 @@ digraph "spq.jdo.Product.setAvailable"
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="spq.server.Server.addProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1server_1_1_server.html#a8e47e8013490f548e93dbcd3ad07fe88",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="spq.server.Server.buyProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1server_1_1_server.html#a72244618b86a34309aaf3859a6724e34",tooltip=" "];
+  Node3 [label="spq.server.Server.buyProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classspq_1_1server_1_1_server.html#a72244618b86a34309aaf3859a6724e34",tooltip="Buy a product for a user. This method allows a user to buy a product if they have sufficient balance ..."];
 }

@@ -252,49 +252,48 @@ $(document).ready(function(){initNavTree('_register_window_8java_source.html',''
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        contentpane.add(textoContrasenya);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        String user_password=textoContrasenya.getText();</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        btnRegister.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            @Override</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                String hostname=<span class="stringliteral">&quot;localhost&quot;</span>;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                String  port = <span class="stringliteral">&quot;8080&quot;</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordtype">double</span> purse = Double.parseDouble(textoPurse.getText());</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                DecimalFormat formato = <span class="keyword">new</span> DecimalFormat(<span class="stringliteral">&quot;#.00&quot;</span>);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                textoPurse.addKeyListener(<span class="keyword">new</span> KeyAdapter() {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keyword">public</span> <span class="keywordtype">void</span> keyReleased(KeyEvent e) {</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                        <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                            textoPurse.setText(formato.format(purse));</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                        } <span class="keywordflow">catch</span> (NumberFormatException ex) {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                            <span class="comment">// el texto ingresado no es un número válido</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    }</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                });</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                <a class="code" href="classspq_1_1client_1_1_the_client.html">TheClient</a> newclient= <span class="keyword">new</span> <a class="code" href="classspq_1_1client_1_1_the_client.html">TheClient</a>(hostname, port);</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                newclient.<a class="code" href="classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809">registerUser</a>(textoNombre.getText(),textoContrasenya.getText(), purse, 0);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        });</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        </div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        btnLogIn.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            @Override</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                <span class="comment">// TODO Auto-generated method stub</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                <span class="keyword">new</span> <a class="code" href="classspq_1_1windows_1_1_login_window.html">LoginWindow</a>();</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                dispose();</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        });</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        setSize(440, 600);</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        setVisible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        setLocationRelativeTo(<span class="keyword">null</span>);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        setTitle(<span class="stringliteral">&quot;Register as a new customer&quot;</span>);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    </div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        btnRegister.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            @Override</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                String hostname=<span class="stringliteral">&quot;localhost&quot;</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                String  port = <span class="stringliteral">&quot;8080&quot;</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordtype">double</span> purse = Double.parseDouble(textoPurse.getText());</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                DecimalFormat formato = <span class="keyword">new</span> DecimalFormat(<span class="stringliteral">&quot;#.00&quot;</span>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                textoPurse.addKeyListener(<span class="keyword">new</span> KeyAdapter() {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="keyword">public</span> <span class="keywordtype">void</span> keyReleased(KeyEvent e) {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                            textoPurse.setText(formato.format(purse));</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                        } <span class="keywordflow">catch</span> (NumberFormatException ex) {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                            <span class="comment">// el texto ingresado no es un número válido</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                        }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                });</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <a class="code" href="classspq_1_1client_1_1_the_client.html">TheClient</a> newclient= <span class="keyword">new</span> <a class="code" href="classspq_1_1client_1_1_the_client.html">TheClient</a>(hostname, port);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                newclient.<a class="code" href="classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809">registerUser</a>(textoNombre.getText(),textoContrasenya.getText(), purse, 0);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        });</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    </div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        btnLogIn.addActionListener(<span class="keyword">new</span> ActionListener() {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            @Override</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> actionPerformed(ActionEvent e) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="comment">// TODO Auto-generated method stub</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="keyword">new</span> <a class="code" href="classspq_1_1windows_1_1_login_window.html">LoginWindow</a>();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                dispose();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        });</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        setSize(440, 600);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        setVisible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        setLocationRelativeTo(<span class="keyword">null</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        setTitle(<span class="stringliteral">&quot;Register as a new customer&quot;</span>);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;}</div>
 <div class="ttc" id="aclassspq_1_1client_1_1_the_client_html"><div class="ttname"><a href="classspq_1_1client_1_1_the_client.html">spq.client.TheClient</a></div><div class="ttdef"><b>Definition:</b> <a href="_the_client_8java_source.html#l00058">TheClient.java:59</a></div></div>
-<div class="ttc" id="aclassspq_1_1client_1_1_the_client_html_a7c577348a80f03ccd1a81297fd1e7809"><div class="ttname"><a href="classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809">spq.client.TheClient.registerUser</a></div><div class="ttdeci">boolean registerUser(String name, String password, double purse, int type)</div><div class="ttdef"><b>Definition:</b> <a href="_the_client_8java_source.html#l00094">TheClient.java:94</a></div></div>
+<div class="ttc" id="aclassspq_1_1client_1_1_the_client_html_a7c577348a80f03ccd1a81297fd1e7809"><div class="ttname"><a href="classspq_1_1client_1_1_the_client.html#a7c577348a80f03ccd1a81297fd1e7809">spq.client.TheClient.registerUser</a></div><div class="ttdeci">boolean registerUser(String name, String password, double purse, int type)</div><div class="ttdef"><b>Definition:</b> <a href="_the_client_8java_source.html#l00109">TheClient.java:109</a></div></div>
 <div class="ttc" id="aclassspq_1_1windows_1_1_login_window_html"><div class="ttname"><a href="classspq_1_1windows_1_1_login_window.html">spq.windows.LoginWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="_login_window_8java_source.html#l00036">LoginWindow.java:36</a></div></div>
 <div class="ttc" id="aclassspq_1_1windows_1_1_register_window_1_1_j_number_text_field_html"><div class="ttname"><a href="classspq_1_1windows_1_1_register_window_1_1_j_number_text_field.html">spq.windows.RegisterWindow.JNumberTextField</a></div><div class="ttdef"><b>Definition:</b> <a href="_register_window_8java_source.html#l00108">RegisterWindow.java:108</a></div></div>
 <div class="ttc" id="aclassspq_1_1windows_1_1_register_window_html"><div class="ttname"><a href="classspq_1_1windows_1_1_register_window.html">spq.windows.RegisterWindow</a></div><div class="ttdef"><b>Definition:</b> <a href="_register_window_8java_source.html#l00028">RegisterWindow.java:28</a></div></div>
@@ -305,7 +304,7 @@ $(document).ready(function(){initNavTree('_register_window_8java_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5eb159725f84c66aafd839904a4acdd0.html">main</a></li><li class="navelem"><a class="el" href="dir_fd3f6763802dee1ad875f6c80eac0bda.html">java</a></li><li class="navelem"><a class="el" href="dir_38cd5efb2e5f0ba85af2a3c34e83c617.html">spq</a></li><li class="navelem"><a class="el" href="dir_56300075e7de9302ffc2300de269d345.html">windows</a></li><li class="navelem"><a class="el" href="_register_window_8java.html">RegisterWindow.java</a></li>
-    <li class="footer">Generated on Tue May 16 2023 16:27:37 for Online Shop by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue May 16 2023 17:10:52 for Online Shop by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

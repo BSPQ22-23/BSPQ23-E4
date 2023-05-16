@@ -103,6 +103,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a14ac3f5e49e230b828076c5df4079d53"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a14ac3f5e49e230b828076c5df4079d53">registerUser</a> (<a class="el" href="classspq_1_1serialitazion_1_1_user_data.html">UserData</a> userData)</td></tr>
 <tr class="separator:a14ac3f5e49e230b828076c5df4079d53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72244618b86a34309aaf3859a6724e34"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a72244618b86a34309aaf3859a6724e34">buyProduct</a> (<a class="el" href="classspq_1_1serialitazion_1_1_user_data.html">UserData</a> userData, @QueryParam(&quot;price&quot;) Double price, @QueryParam(&quot;name&quot;) String name)</td></tr>
+<tr class="memdesc:a72244618b86a34309aaf3859a6724e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buy a product for a user. This method allows a user to buy a product if they have sufficient balance in their purse.  <a href="classspq_1_1server_1_1_server.html#a72244618b86a34309aaf3859a6724e34">More...</a><br /></td></tr>
 <tr class="separator:a72244618b86a34309aaf3859a6724e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e47e8013490f548e93dbcd3ad07fe88"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a8e47e8013490f548e93dbcd3ad07fe88">addProduct</a> (<a class="el" href="classspq_1_1serialitazion_1_1_product_data.html">ProductData</a> productData)</td></tr>
 <tr class="separator:a8e47e8013490f548e93dbcd3ad07fe88"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,6 +116,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2d0f9eea5c6521a959c88845b66cef88"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a2d0f9eea5c6521a959c88845b66cef88">updatePurse</a> (@PathParam(&quot;name&quot;) String name, @PathParam(&quot;amount&quot;) double amount)</td></tr>
 <tr class="separator:a2d0f9eea5c6521a959c88845b66cef88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ecfc05a8a6360969ca1fb670a8789b6"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classspq_1_1serialitazion_1_1_product_data.html">ProductData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a1ecfc05a8a6360969ca1fb670a8789b6">getAvailableProducts</a> ()</td></tr>
+<tr class="memdesc:a1ecfc05a8a6360969ca1fb670a8789b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a list of available products.  <a href="classspq_1_1server_1_1_server.html#a1ecfc05a8a6360969ca1fb670a8789b6">More...</a><br /></td></tr>
 <tr class="separator:a1ecfc05a8a6360969ca1fb670a8789b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a3e475438053239f86c16a0e8d85203"><td class="memItemLeft" align="right" valign="top">Response&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classspq_1_1server_1_1_server.html#a7a3e475438053239f86c16a0e8d85203">sayHello</a> ()</td></tr>
 <tr class="separator:a7a3e475438053239f86c16a0e8d85203"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,7 +128,7 @@ Static Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00041">41</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00042">42</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a804580598ad17f2ebd67c4de7c229cba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a804580598ad17f2ebd67c4de7c229cba">&#9670;&nbsp;</a></span>Server()</h2>
@@ -142,8 +144,9 @@ Static Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The constructor of the <a class="el" href="classspq_1_1server_1_1_server.html">Server</a> class. It initializes the PersistenceManager and Transaction objects. </p>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00049">49</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00075">75</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 
 </div>
 </div>
@@ -163,8 +166,23 @@ Static Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Adds or updates a product to the system with the given information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">productData</td><td>the information about the product to add or update. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a Response object indicating the result of the operation. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">javax.jdo.JDOObjectNotFoundException</td><td>if the product to update does not exist. </td></tr>
+    <tr><td class="paramname">RuntimeException</td><td>if there is an error persisting the product data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00127">127</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00191">191</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -205,7 +223,21 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00102">102</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p>Buy a product for a user. This method allows a user to buy a product if they have sufficient balance in their purse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userData</td><td>The user data. </td></tr>
+    <tr><td class="paramname">price</td><td>The price of the product. </td></tr>
+    <tr><td class="paramname">name</td><td>The name of the product. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A response indicating whether the purchase was successful or not. If the purchase was successful, a response with status code 200 OK is returned. If the user data is invalid, a response with status code 400 BAD REQUEST and an error message is returned. If the product is not found, a response with status code 400 BAD REQUEST and an error message is returned. If the user does not have sufficient balance, a response with status code 400 BAD REQUEST and an error message is returned. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>User </dd>
+<dd>
+Product </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00156">156</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -239,8 +271,17 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Changes the password of the user with the given name.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>the name of the user whose password needs to be changed </td></tr>
+    <tr><td class="paramname">userData</td><td>the updated user data containing the new password </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a Response object indicating whether the operation was successful or not </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00220">220</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00306">306</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -264,8 +305,16 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Deletes the user with the given name from the database.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userData</td><td>the user data containing the name of the user to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a response indicating whether the user was successfully deleted or not. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00191">191</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00272">272</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,7 +338,22 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00273">273</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p>Retrieves a list of available products. </p>
+<pre class="fragment">   This function sends a GET request to the "/available" endpoint of the
+   server to retrieve a list of available products.
+
+   The list of products is filtered by the "available" flag in the
+   database.
+</pre> <dl class="section return"><dt>Returns</dt><dd>A list of ProductData objects representing the available products.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">WebApplicationException</td><td>if an error occurs while processing the request.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>ProductData </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00385">385</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -313,8 +377,16 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Authenticates a user with the provided credentials by querying the database.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userData</td><td>the user data containing the user name and password</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a response containing the user data if authentication was successful, or a 401 unauthorized response otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00169">169</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00241">241</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -338,8 +410,16 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The registerUser method is a HTTP POST request that registers a new user in the database or updates an existing one. If the user already exists, the method updates the user's password, purse, and type with the values in the userData object. If the user does not exist, the method creates a new user with the values in the userData object.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userData</td><td>The UserData object that contains the information about the user to register or update. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A HTTP response with a status code 200 (OK) if the operation was successful, or a HTTP response with a status code 400 (BAD REQUEST) if there was an error during the operation. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00058">58</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00096">96</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -363,7 +443,7 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00300">300</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00412">412</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 
 </div>
 </div>
@@ -392,8 +472,17 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates the purse amount for the user with the specified name.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the user. </td></tr>
+    <tr><td class="paramname">amount</td><td>The amount to update the purse by. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A response indicating success or failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00246">246</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00340">340</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -422,8 +511,9 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>The logger used to log information about the HTTP requests and responses. </p>
 
-<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00043">43</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_server_8java_source.html#l00047">47</a> of file <a class="el" href="_server_8java_source.html">Server.java</a>.</p>
 
 </div>
 </div>
@@ -436,7 +526,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>spq</b></li><li class="navelem"><a class="el" href="namespacespq_1_1server.html">server</a></li><li class="navelem"><a class="el" href="classspq_1_1server_1_1_server.html">Server</a></li>
-    <li class="footer">Generated on Tue May 16 2023 16:27:37 for Online Shop by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Tue May 16 2023 17:10:52 for Online Shop by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

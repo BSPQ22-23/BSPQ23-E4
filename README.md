@@ -1,10 +1,16 @@
-BSPQ23-E4
+Online Shop Project (BSPQ23-E4)  {#mainpage}
 ===================
-## IDEA
-     The idea of our project is to create an app to buy computer products. We are focusing on three specific ones, which are computers, consoles and tablets. There             will be two types of users, the client, which will be able to register on their own and login to buy the available products, and the admin, which can only be               registered by another admin, and will be able to add new products and manage the app and their clients.
+### About
+     The idea of our project is to create an app to buy computer products. We are focusing on three specific ones, which are computers, consoles and tablets. There will be two types of users, the client, which will be able to register on their own and login to buy the available products, and the admin, which can only be registered by another admin, and will be able to add new products and manage the app and their clients.
 
+### Tools and Languages 
+* Java
+* Maven
+* Datanucleus
+* Jersey
+* Doxygen
 
-This example relies on the DataNucleus Maven plugin. Check the database configuration in the *datanucleus.properties* file and the JDBC driver dependency specified in the *pom.xml* file.
+### Commands
 
 Run the following command to build everything and enhance the DB classes:
 
@@ -50,9 +56,9 @@ Move the html documentation to docs directory :
       mvn validate
 
 
-## ✒️ Authors
-Mikel
-Ana   
-Markel
-Javi
-Arkaitz
+### ✒️ Authors
+* Mikel
+* Ana
+* Markel
+* Javier
+* Arkaitz

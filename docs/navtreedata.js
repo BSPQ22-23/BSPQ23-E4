@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "Online Shop", "index.html", [
+    [ "Online Shop Project (BSPQ23-E4)", "index.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -46,7 +47,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-""
+"_add_product_window_8java.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
