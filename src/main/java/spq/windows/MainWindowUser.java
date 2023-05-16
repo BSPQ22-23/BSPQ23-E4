@@ -115,6 +115,10 @@ public class MainWindowUser extends JFrame {
 						.addContainerGap()));
 		NorthPanel.setLayout(gl_NorthPanel);
 
+		/**
+		 * Button that will make an option pane appear where you will have to write the new password for the next time that you will want to log in as this user
+		 */
+		
 		btnchangePassword.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -168,6 +172,10 @@ public class MainWindowUser extends JFrame {
 
 			JLabel price = new JLabel(pricetext);
 			JButton buyButton = new JButton("BUY!");
+			/**
+			 * Button that will appear once for every product available to buy
+			 * When clicked and if it is possible for the user, the product will be bought and the product won't be able anymore
+			 */
 			buyButton.addActionListener(new ActionListener() {
 
 				@Override
@@ -191,6 +199,9 @@ public class MainWindowUser extends JFrame {
 
 		}
 
+		/**
+		 * Button to log out and return to the login window
+		 */
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

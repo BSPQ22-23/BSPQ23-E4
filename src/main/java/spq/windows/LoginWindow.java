@@ -89,6 +89,11 @@ public class LoginWindow extends JFrame {
 		btnRegister.setText("Register");
 		btnRegister.setFont(new Font("Goudy Old Style", Font.BOLD | Font.ITALIC, 16));
 		contentpane.add(btnRegister);
+		
+		/**
+		 * Button to log in the app. You will need an existing username and its correct password.
+		 * Depending on the type of the user, admin or user, you will go to a different window.
+		 */
 
 		btnLogIn.addActionListener(new ActionListener() {
 			@Override
@@ -117,6 +122,9 @@ public class LoginWindow extends JFrame {
 
 		});
 
+		/**
+		 * Button that will take you to the window to register as a user
+		 */
 		btnRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

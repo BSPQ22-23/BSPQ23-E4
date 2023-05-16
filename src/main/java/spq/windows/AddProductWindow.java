@@ -94,7 +94,11 @@ public class AddProductWindow extends JFrame{
 		btnAddProductWindow.setBounds(227, 11, 120, 23);
 		btnAddProductWindow.setEnabled(false);
 		contentpane.add(btnAddProductWindow);
+		/**
 
+		ActionListener for the btnRegisterAdminWindow button.
+		It creates a new MainWindowAdmin window and disposes the current window.
+		*/
 		btnRegisterAdminWindow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -103,6 +107,12 @@ public class AddProductWindow extends JFrame{
 				dispose();
 			}
 		});
+		/**
+
+		ActionListener for the btnAddProduct button.
+		It sends a request to the server to add a new product with the name and price entered in the text fields.
+		It also prints "Okay" to the console once the request is sent successfully.
+		*/
 		
 		btnAddProduct.addActionListener(new ActionListener() {
 			@Override
@@ -115,7 +125,11 @@ public class AddProductWindow extends JFrame{
 			}
 		});
 		
-		
+		/**
+
+		ActionListener for the btnAddProductWindow button.
+		It creates a new MainWindowAdmin window and disposes the current window.
+		*/
 		btnAddProductWindow.addActionListener(new ActionListener() {
 			
 			@Override
@@ -126,7 +140,11 @@ public class AddProductWindow extends JFrame{
 			}
 		});
 	
+		/**
 
+		ActionListener for the btnLogOut button.
+		It creates a new LoginWindow window and disposes the current window.
+		*/
 		btnLogOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
