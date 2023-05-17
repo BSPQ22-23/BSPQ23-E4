@@ -134,27 +134,27 @@ public class Server {
 		}
 	}
 	
-	@POST
-	@Path("/addsale")
-	public Response addSale(String buyer, ProductData prodData) {
-		try {
-			tx.begin();
-			logger.info("Trying to add new sale for: '{}'", buyer);
-			Product p = new Product(prodData.getName(), prodData.getPrice(), prodData.isAvailable());
-			Sale sale = new Sale(buyer, p);
-			logger.info("Creating sale");
-			pm.makePersistent(sale);
-			logger.info("Sale created");
+	// @POST
+	// @Path("/addsale")
+	// public Response addSale(String buyer, ProductData prodData) {
+	// 	try {
+	// 		tx.begin();
+	// 		logger.info("Trying to add new sale for: '{}'", buyer);
+	// 		Product p = new Product(prodData.getName(), prodData.getPrice(), prodData.isAvailable());
+	// 		Sale sale = new Sale(buyer, p);
+	// 		logger.info("Creating sale");
+	// 		pm.makePersistent(sale);
+	// 		logger.info("Sale created");
 			
-			tx.commit();
-			return Response.ok().build();
+	// 		tx.commit();
+	// 		return Response.ok().build();
 
-		} finally {
-			if (tx.isActive()) {
-				tx.rollback();
-			}
-		}
-	}
+	// 	} finally {
+	// 		if (tx.isActive()) {
+	// 			tx.rollback();
+	// 		}
+	// 	}
+	// }
 
 	/**
 	 * 

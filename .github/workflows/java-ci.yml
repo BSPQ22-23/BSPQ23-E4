@@ -34,8 +34,8 @@ jobs:
           uses: jakejarvis/wait-action@master
           with:
             time: '10s'
-        - name: Launch the client
-          run: mvn exec:java -Pclient
+        - name: Launch the integration test (a client that connects to the server)
+          run: mvn exec:java -Pintegration
 
         - name: Run maven Tests
           run: mvn --batch-mode --update-snapshots test
