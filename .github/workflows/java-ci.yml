@@ -25,5 +25,14 @@ jobs:
             echo "JDK_JAVA_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED" >> $GITHUB_ENV
             mvn --batch-mode --update-snapshots datanucleus:enhance datanucleus:schema-create
 
-        - name: Build with Maven including tests
+        - name: Launch the server in background mode 
+          run: mvn jetty:run &
+        - name: Sleep for 10 seconds
+          uses: jakejarvis/wait-action@master
+          with:
+            time: '10s'
+        - name: Launch the client
+          run: mvn exec:java -Pclient
+
+        - name: Run maven Tests
           run: mvn --batch-mode --update-snapshots test
