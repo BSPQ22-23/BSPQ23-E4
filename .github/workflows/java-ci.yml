@@ -20,6 +20,9 @@ jobs:
         - name: Set up the database  
           run: mysql -uroot -proot < sql/create-productsdb.sql 
 
+        - name: compile the code
+          run: mvn clean compile
+          
         - name: Prepare tables with datanucleus  
           run: |
             echo "JDK_JAVA_OPTIONS=--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED" >> $GITHUB_ENV
