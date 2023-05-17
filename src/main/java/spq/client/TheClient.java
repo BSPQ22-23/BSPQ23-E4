@@ -32,8 +32,10 @@ import javax.jdo.Transaction;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import spq.jdo.Product;
 import spq.jdo.User;
 import spq.serialitazion.ProductData;
+import spq.serialitazion.SaleData;
 import spq.serialitazion.UserData;
 import spq.windows.LoginWindow;
 
@@ -121,6 +123,32 @@ public class TheClient
 			return false;
 		} else {
 			logger.info("User correctly registered");
+			return true;
+		}
+    	
+    
+    }
+    
+    /**
+     * Adds a new sale to the system with the information of the user buyer and the product bought
+     * @param buyer The name of the user that has bought the product
+     * @param prod The whole information of the product bought
+     * @return 
+     */
+    public boolean addSale(String buyer, Product prod) {
+    	WebTarget addSaleWebTarget = webTarget.path("addsale");
+    	Invocation.Builder invocationBuilder = addSaleWebTarget.request(MediaType.APPLICATION_JSON);
+		
+    	SaleData saledata = new SaleData();
+    	saledata.setBuyer(buyer);
+    	ProductData p = new ProductData(prod.getName(), prod.getPrice(), prod.isAvailable());
+    	saledata.setProduct(p);
+    	Response response = invocationBuilder.post(Entity.entity(saledata, MediaType.APPLICATION_JSON));
+    	if (response.getStatus() != Status.OK.getStatusCode()) {
+			logger.error("Error connecting with the server. Code: {}", response.getStatus());
+			return false;
+		} else {
+			logger.info("Sale correctly registered");
 			return true;
 		}
     	

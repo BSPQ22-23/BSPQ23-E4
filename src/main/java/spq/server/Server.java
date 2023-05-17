@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.logging.log4j.Logger;
 
 import spq.jdo.Product;
+import spq.jdo.Sale;
 import spq.jdo.User;
 import spq.serialitazion.ProductData;
 import spq.serialitazion.UserCredentials;
@@ -123,6 +124,28 @@ public class Server {
 				pm.makePersistent(user);
 				logger.info("User created: {}", user);
 			}
+			tx.commit();
+			return Response.ok().build();
+
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+		}
+	}
+	
+	@POST
+	@Path("/addsale")
+	public Response addSale(String buyer, ProductData prodData) {
+		try {
+			tx.begin();
+			logger.info("Trying to add new sale for: '{}'", buyer);
+			Product p = new Product(prodData.getName(), prodData.getPrice(), prodData.isAvailable());
+			Sale sale = new Sale(buyer, p);
+			logger.info("Creating sale");
+			pm.makePersistent(sale);
+			logger.info("Sale created");
+			
 			tx.commit();
 			return Response.ok().build();
 
