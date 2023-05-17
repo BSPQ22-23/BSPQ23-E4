@@ -58,7 +58,7 @@ Move the html documentation to docs directory :
 
 ### ✒️ Authors
 * Mikel
+* Javier
 * Ana
 * Markel
-* Javier
 * Arkaitz
