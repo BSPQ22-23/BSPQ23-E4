@@ -16,9 +16,9 @@ import org.apache.logging.log4j.LogManager;
 
 import spq.jdo.Product;
 import spq.jdo.User;
-import spq.serialitazion.ProductData;
-import spq.serialitazion.SaleData;
-import spq.serialitazion.UserData;
+import spq.serialization.ProductData;
+import spq.serialization.SaleData;
+import spq.serialization.UserData;
 import spq.windows.LoginWindow;
 
 import javax.ws.rs.client.Client;

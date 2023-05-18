@@ -29,10 +29,10 @@ public class AddProductWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentpane;
-	private JLabel labelNombre = new JLabel();
+	private JLabel labelName = new JLabel();
 	private JLabel labelPrice = new JLabel();
-	private JTextField textoNombre = new JTextField();
-	private JTextField textoPrecio = new JTextField();
+	private JTextField textName = new JTextField();
+	private JTextField textPrice = new JTextField();
 	private JButton btnAddProduct = new JButton();
 	private JButton btnLogOut = new JButton();
 
@@ -55,11 +55,11 @@ public class AddProductWindow extends JFrame{
 		contentpane.add(labelTitle);
 
 		//GET USERNAME
-		labelNombre.setText("Name:");
-		labelNombre.setBounds(99, 175, 71, 20);
-		labelNombre.setOpaque(true);
-		labelNombre.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelNombre);
+		labelName.setText("Name:");
+		labelName.setBounds(99, 175, 71, 20);
+		labelName.setOpaque(true);
+		labelName.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelName);
 		
 		labelPrice.setText("Price:");
 		labelPrice.setBounds(86, 375, 120, 20);
@@ -80,11 +80,11 @@ public class AddProductWindow extends JFrame{
 		btnLogOut.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(btnLogOut);
 
-		textoNombre.setBounds(214, 175, 143, 20);
-		contentpane.add(textoNombre);
+		textName.setBounds(214, 175, 143, 20);
+		contentpane.add(textName);
 
-		textoPrecio.setBounds(214, 375, 143, 20);
-		contentpane.add(textoPrecio);
+		textPrice.setBounds(214, 375, 143, 20);
+		contentpane.add(textPrice);
 		
 		JButton btnRegisterAdminWindow = new JButton("Register Admin");
 		btnRegisterAdminWindow.setBounds(99, 11, 107, 23);
@@ -120,7 +120,7 @@ public class AddProductWindow extends JFrame{
 				String hostname="localhost";
 				String  port = "8080";
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.addProduct(textoNombre.getText(),Double.parseDouble(textoPrecio.getText()),true);
+				newclient.addProduct(textName.getText(),Double.parseDouble(textPrice.getText()),true);
 				System.out.println("Okay");
 			}
 		});

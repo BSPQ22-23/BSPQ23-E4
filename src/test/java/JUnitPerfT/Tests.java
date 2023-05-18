@@ -6,7 +6,7 @@ import java.util.List;
 
 import spq.client.TheClient;
 import spq.jdo.Product;
-import spq.serialitazion.ProductData;
+import spq.serialization.ProductData;
 import spq.server.Server;
 
 import javax.ws.rs.client.Client;

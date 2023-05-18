@@ -96,12 +96,12 @@ public class RegisterWindow extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentpane;
-	private JLabel labelNombre = new JLabel();
+	private JLabel labelName = new JLabel();
 	private JLabel labelPurse = new JLabel();
-	private JLabel labelContrasenya = new JLabel();
-	private JTextField textoNombre = new JTextField();
-	private JTextField textoPurse = new JTextField();
-	private JPasswordField textoContrasenya = new JPasswordField();
+	private JLabel labelPassword = new JLabel();
+	private JTextField textName = new JTextField();
+	private JTextField textPurse = new JTextField();
+	private JPasswordField textPassword = new JPasswordField();
 	private JButton btnRegister = new JButton();
 	private JButton btnLogIn = new JButton();
 
@@ -122,11 +122,11 @@ public class RegisterWindow extends JFrame {
 		labelTitle.setBounds(44, 35, 359, 50);
 		contentpane.add(labelTitle);
 		//GET USERNAME
-		labelNombre.setText("Name:");
-		labelNombre.setBounds(99, 175, 71, 20);
-		labelNombre.setOpaque(true);
-		labelNombre.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelNombre);
+		labelName.setText("Name:");
+		labelName.setBounds(99, 175, 71, 20);
+		labelName.setOpaque(true);
+		labelName.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelName);
 				
 		labelPurse.setText("Purse:");
 		labelPurse.setBounds(107, 275, 99, 20);
@@ -134,11 +134,11 @@ public class RegisterWindow extends JFrame {
 		labelPurse.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(labelPurse);
 		
-		labelContrasenya.setText("Password:");
-		labelContrasenya.setBounds(86, 375, 120, 20);
-		labelContrasenya.setOpaque(true);
-		labelContrasenya.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelContrasenya);
+		labelPassword.setText("Password:");
+		labelPassword.setBounds(86, 375, 120, 20);
+		labelPassword.setOpaque(true);
+		labelPassword.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelPassword);
 		
 		btnRegister.setForeground(SystemColor.text);
 		btnRegister.setBackground(new Color(0, 51, 255));
@@ -153,16 +153,16 @@ public class RegisterWindow extends JFrame {
 		btnLogIn.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(btnLogIn);
 
-		textoNombre.setBounds(214, 175, 143, 20);
-		contentpane.add(textoNombre);
-		String username= textoNombre.getText();
+		textName.setBounds(214, 175, 143, 20);
+		contentpane.add(textName);
+		String username= textName.getText();
 		
-		textoPurse.setBounds(214, 275, 143, 20);
-		contentpane.add(textoPurse);
+		textPurse.setBounds(214, 275, 143, 20);
+		contentpane.add(textPurse);
 
-		textoContrasenya.setBounds(214, 375, 143, 20);
-		contentpane.add(textoContrasenya);
-		String user_password=textoContrasenya.getText();
+		textPassword.setBounds(214, 375, 143, 20);
+		contentpane.add(textPassword);
+		String user_password=textPassword.getText();
 
 		/**
 		 * Button to register a new user in the database using the method register user (with its rules and everything)
@@ -172,19 +172,19 @@ public class RegisterWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String hostname="localhost";
 				String  port = "8080";
-				double purse = Double.parseDouble(textoPurse.getText());
+				double purse = Double.parseDouble(textPurse.getText());
 				DecimalFormat formato = new DecimalFormat("#.00");
-				textoPurse.addKeyListener(new KeyAdapter() {
+				textPurse.addKeyListener(new KeyAdapter() {
 				    public void keyReleased(KeyEvent e) {
 				        try {
-				            textoPurse.setText(formato.format(purse));
+				            textPurse.setText(formato.format(purse));
 				        } catch (NumberFormatException ex) {
 				            // el texto ingresado no es un número válido
 				        }
 				    }
 				});
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), purse, 0);
+				newclient.registerUser(textName.getText(),textPassword.getText(), purse, 0);
 			}
 		});
 		

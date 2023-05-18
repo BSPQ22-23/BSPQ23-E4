@@ -1,4 +1,4 @@
-package spq.serialitazion;
+package spq.serialization;
 
 /**
  * Class representing user credentials for password change.

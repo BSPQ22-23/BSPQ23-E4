@@ -3,7 +3,7 @@ package spq.serialization;
 import org.junit.Before;
 import org.junit.Test;
 
-import spq.serialitazion.UserData;
+import spq.serialization.UserData;
 
 import static org.junit.Assert.assertEquals;
 

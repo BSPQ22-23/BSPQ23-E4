@@ -1,6 +1,6 @@
-package spq.serialitazion;
+package spq.serialization;
 
-import spq.serialitazion.ProductData;
+import spq.serialization.ProductData;
 
 /**
  * Class representing sale data.

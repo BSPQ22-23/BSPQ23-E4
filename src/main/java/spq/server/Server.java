@@ -27,9 +27,9 @@ import org.apache.logging.log4j.Logger;
 import spq.jdo.Product;
 import spq.jdo.Sale;
 import spq.jdo.User;
-import spq.serialitazion.ProductData;
-import spq.serialitazion.UserCredentials;
-import spq.serialitazion.UserData;
+import spq.serialization.ProductData;
+import spq.serialization.UserCredentials;
+import spq.serialization.UserData;
 
 import org.apache.logging.log4j.LogManager;
 import javax.annotation.security.PermitAll;
@@ -106,7 +106,7 @@ public class Server {
 			}
 			logger.info("User: {}", user);
 			if (user != null) {
-				logger.info("Se tting password user: {}", user);
+				logger.info("Setting password user: {}", user);
 				user.setPassword(userData.getPassword());
 				logger.info("Password set user: {}", user);
 

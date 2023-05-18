@@ -26,7 +26,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import spq.jdo.User;
-import spq.serialitazion.UserData;
+import spq.serialization.UserData;
 
 
 
@@ -74,7 +74,7 @@ public class ServerTest {
         // prepare mock Persistence Manager to return User
         UserData userData = new UserData();
         userData.setName("user");
-        userData.setPassword("contra");
+        userData.setPassword("pwd");
         userData.setPurse(12.34);
         userData.setType(0);
 
@@ -88,7 +88,7 @@ public class ServerTest {
         // check that the user is set by the code with the password
         ArgumentCaptor<String> passwordCaptor = ArgumentCaptor.forClass(String.class);
         verify(user).setPassword(passwordCaptor.capture());
-        assertEquals("contra", passwordCaptor.getValue());
+        assertEquals("pwd", passwordCaptor.getValue());
 
         // check expected response
         assertEquals(Response.Status.OK, response.getStatusInfo());

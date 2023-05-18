@@ -40,10 +40,10 @@ public class LoginWindow extends JFrame {
 	static Properties p;
 
 	private JPanel contentpane;
-	private JLabel labelUsuario = new JLabel();
-	private JLabel labelContrasenya = new JLabel();
-	private JTextField textoUsuario = new JTextField();
-	private JPasswordField textoContrasenya = new JPasswordField();
+	private JLabel labelUser = new JLabel();
+	private JLabel labelPassword = new JLabel();
+	private JTextField textUser = new JTextField();
+	private JPasswordField textPassword = new JPasswordField();
 	private JButton btnLogIn = new JButton();
 	private JButton btnRegister = new JButton();
 
@@ -59,23 +59,23 @@ public class LoginWindow extends JFrame {
 		labelTitle.setBounds(49, 33, 390, 50);
 		contentpane.add(labelTitle);
 
-		labelUsuario.setText("Usuario:");
-		labelUsuario.setOpaque(true);
-		labelUsuario.setBounds(85, 125, 55, 20);
-		labelUsuario.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelUsuario, BorderLayout.SOUTH);
+		labelUser.setText("Usuario:");
+		labelUser.setOpaque(true);
+		labelUser.setBounds(85, 125, 55, 20);
+		labelUser.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelUser, BorderLayout.SOUTH);
 
-		textoUsuario.setBounds(179, 125, 169, 20);
-		contentpane.add(textoUsuario);
+		textUser.setBounds(179, 125, 169, 20);
+		contentpane.add(textUser);
 
-		labelContrasenya.setText("Password:");
-		labelContrasenya.setBounds(65, 175, 89, 20);
-		labelContrasenya.setOpaque(true);
-		labelContrasenya.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelContrasenya);
+		labelPassword.setText("Password:");
+		labelPassword.setBounds(65, 175, 89, 20);
+		labelPassword.setOpaque(true);
+		labelPassword.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelPassword);
 
-		textoContrasenya.setBounds(179, 175, 169, 20);
-		contentpane.add(textoContrasenya);
+		textPassword.setBounds(179, 175, 169, 20);
+		contentpane.add(textPassword);
 
 		btnLogIn.setForeground(SystemColor.text);
 		btnLogIn.setBackground(new Color(0, 51, 255));
@@ -102,16 +102,16 @@ public class LoginWindow extends JFrame {
 				String  port = "8080";
 				
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());
-				User u = newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText());;
+				newclient.loginUser(textUser.getText(),textPassword.getText());
+				User u = newclient.loginUser(textUser.getText(),textPassword.getText());;
 				
-				if (newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==0) {
+				if (newclient.loginUser(textUser.getText(),textPassword.getText()).getType()==0) {
 					//new MainWindowUser(u);
 					dispose();
 					MainWindowUser w_user=new MainWindowUser(u);
 					w_user.setVisible(true);
 					
-				}else if(newclient.loginUser(textoUsuario.getText(),textoContrasenya.getText()).getType()==1){
+				}else if(newclient.loginUser(textUser.getText(),textPassword.getText()).getType()==1){
 					dispose();
 					MainWindowAdmin w_admin=new MainWindowAdmin();
 					w_admin.setVisible(true);

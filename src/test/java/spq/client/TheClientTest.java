@@ -31,8 +31,8 @@ import org.mockito.MockitoAnnotations;
 
 import spq.client.TheClient;
 import spq.jdo.User;
-import spq.serialitazion.ProductData;
-import spq.serialitazion.UserData;
+import spq.serialization.ProductData;
+import spq.serialization.UserData;
 
 public class TheClientTest {
 	@Mock

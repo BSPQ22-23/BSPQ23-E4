@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import spq.serialitazion.ProductData;
+import spq.serialization.ProductData;
 
 import org.junit.Before;
 import org.junit.Test;

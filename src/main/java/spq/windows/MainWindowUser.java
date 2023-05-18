@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import spq.client.TheClient;
 import spq.jdo.Product;
 import spq.jdo.User;
-import spq.serialitazion.ProductData;
+import spq.serialization.ProductData;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
