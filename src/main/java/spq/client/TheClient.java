@@ -21,6 +21,7 @@ package spq.client;
 import java.util.Iterator;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
@@ -33,6 +34,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 import spq.jdo.Product;
+import spq.jdo.Sale;
 import spq.jdo.User;
 import spq.serialization.ProductData;
 import spq.serialization.SaleData;
@@ -130,20 +132,24 @@ public class TheClient
     }
     
     /**
-     * Adds a new sale to the system with the information of the user buyer and the product bought
-     * @param buyer The name of the user that has bought the product
-     * @param prod The whole information of the product bought
-     * @return 
+     * Adds a new sale with the specified buyer and product to the server.
+     *
+     * @param buyer the name of the buyer
+     * @param p the product being sold
      */
-    public boolean addSale(String buyer, Product prod) {
-    	WebTarget addSaleWebTarget = webTarget.path("addsale");
-    	Invocation.Builder invocationBuilder = addSaleWebTarget.request(MediaType.APPLICATION_JSON);
-		
-    	SaleData saledata = new SaleData();
-    	saledata.setBuyer(buyer);
-    	ProductData p = new ProductData(prod.getName(), prod.getPrice(), prod.isAvailable());
-    	saledata.setProduct(p);
-    	Response response = invocationBuilder.post(Entity.entity(saledata, MediaType.APPLICATION_JSON));
+
+    public boolean addSale(String buyer, Product p) {
+        WebTarget addSaleWebTarget = webTarget.path("add-sale");
+        Invocation.Builder invocationBuilder = addSaleWebTarget.request(MediaType.APPLICATION_JSON);
+
+        SaleData saleData =new SaleData();
+        String saleid = generateRandomSaleId();
+        saleData.setSaleId(saleid);
+    	saleData.setBuyer(buyer);
+    	saleData.setNameProduct(p.getName());
+    	saleData.setPriceProduct(p.getPrice());
+    	
+    	Response response = invocationBuilder.post(Entity.entity(saleData, MediaType.APPLICATION_JSON));
     	if (response.getStatus() != Status.OK.getStatusCode()) {
 			logger.error("Error connecting with the server. Code: {}", response.getStatus());
 			return false;
@@ -151,9 +157,26 @@ public class TheClient
 			logger.info("Sale correctly registered");
 			return true;
 		}
-    	
-    
     }
+
+    /**
+     * Generates a random sale ID consisting of 5 alphanumeric characters (numbers and uppercase letters).
+     *
+     * @return a randomly generated sale ID
+     */
+    private String generateRandomSaleId() {
+        int length = 5;
+        String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            char randomChar = characters.charAt(randomIndex);
+            sb.append(randomChar);
+        }
+        return sb.toString();
+    }
+
     
     /**
      * Add a new product to the inventory

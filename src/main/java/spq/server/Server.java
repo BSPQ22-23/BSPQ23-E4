@@ -28,6 +28,7 @@ import spq.jdo.Product;
 import spq.jdo.Sale;
 import spq.jdo.User;
 import spq.serialization.ProductData;
+import spq.serialization.SaleData;
 import spq.serialization.UserCredentials;
 import spq.serialization.UserData;
 
@@ -134,27 +135,53 @@ public class Server {
 		}
 	}
 	
-	// @POST
-	// @Path("/addsale")
-	// public Response addSale(String buyer, ProductData prodData) {
-	// 	try {
-	// 		tx.begin();
-	// 		logger.info("Trying to add new sale for: '{}'", buyer);
-	// 		Product p = new Product(prodData.getName(), prodData.getPrice(), prodData.isAvailable());
-	// 		Sale sale = new Sale(buyer, p);
-	// 		logger.info("Creating sale");
-	// 		pm.makePersistent(sale);
-	// 		logger.info("Sale created");
-			
-	// 		tx.commit();
-	// 		return Response.ok().build();
+	@POST
+	@Path("/add-sale")
+	public Response addSale(SaleData saleData) {
+		try {
+			tx.begin();
+			logger.info("Checking whether the sale already exits or not: '{}'", saleData.getSaleId());
+			Sale sale = null;
+			try {
+				sale = pm.getObjectById(Sale.class, saleData.getSaleId());
+			} catch (javax.jdo.JDOObjectNotFoundException jonfe) {
+				logger.info("Exception launched: {}", jonfe.getMessage());
+			}
+			logger.info("Sale: {}", sale);
+			if (sale != null) {
+				logger.info("Setting saleid sale: {}", sale);
+				sale.setSaleId(saleData.getSaleId());
+				logger.info("Saleid set saler: {}", sale);
 
-	// 	} finally {
-	// 		if (tx.isActive()) {
-	// 			tx.rollback();
-	// 		}
-	// 	}
-	// }
+				logger.info("Setting buyer sale: {}", sale);
+				sale.setBuyer(saleData.getBuyer());
+				logger.info("Buyer set sale:{}", sale);
+
+				logger.info("Setting name product sale: {}", sale);
+				sale.setNameProduct(saleData.getNameProduct());
+				logger.info("Type set sale:{}", sale);
+				
+				logger.info("Setting type sale: {}", sale);
+				sale.setPriceProduct(saleData.getPriceProduct());
+				logger.info("Type set sale:{}", sale);
+
+			} else {
+				logger.info("Creating sale: {}", sale);
+				sale = new Sale(saleData.getSaleId(), saleData.getBuyer(), saleData.getNameProduct(), saleData.getPriceProduct());
+				pm.makePersistent(sale);
+				logger.info("User created: {}", sale);
+			}
+			tx.commit();
+			return Response.ok().build();
+
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+		}
+	}
+	
+	
 
 	/**
 	 * 
