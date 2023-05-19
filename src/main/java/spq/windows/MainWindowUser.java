@@ -160,7 +160,7 @@ public class MainWindowUser extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String amount = JOptionPane.showInputDialog("Introduce the new Password: ");
+				String amount = JOptionPane.showInputDialog("Introduce the amount u wanna add: ");
 				String hostname = "localhost";
 				String port = "8080";
 

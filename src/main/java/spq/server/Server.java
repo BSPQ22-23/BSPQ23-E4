@@ -198,7 +198,7 @@ public class Server {
 		}
 	}
 	
-	@PUT
+	@POST
 	@Path("/updatePurse")
 	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount,@QueryParam("purse") double purse) {
 		
