@@ -197,17 +197,10 @@ public class Server {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Insufficient balance").build();
 		}
 	}
-	/**
-	 * 
-	 * Updates the purse amount for the user with the specified name.
-	 * 
-	 * @param name   The name of the user.
-	 * @param amount The amount to update the purse by.
-	 * @return A response indicating success or failure.
-	 */
+	
 	@PUT
 	@Path("/updatePurse")
-	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount) {
+	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount,@QueryParam("purse") double purse) {
 		
 		tx.begin();
 
@@ -218,7 +211,7 @@ public class Server {
 
 	
 		
-			user.setPurse(user.getPurse()+ amount);
+			user.setPurse(purse + amount);
 			pm.makePersistent(user);
 		
 			tx.commit();

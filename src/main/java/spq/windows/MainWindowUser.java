@@ -83,10 +83,15 @@ public class MainWindowUser extends JFrame {
 		btnchangePassword.setBackground(Color.ORANGE);
 		btnchangePassword.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnchangePassword.setForeground(Color.BLACK);
+		//BTN UPDATEPURSE
+		JButton btnUP = new JButton("UPDATEPURSE");
+		btnUP.setBackground(Color.GREEN);
+		btnUP.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnUP.setForeground(Color.BLACK);
 		GroupLayout gl_SouthPanel = new GroupLayout(SouthPanel);
 		gl_SouthPanel
 				.setHorizontalGroup(gl_SouthPanel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-						gl_SouthPanel.createSequentialGroup().addContainerGap().addComponent(btnLogOut)
+						gl_SouthPanel.createSequentialGroup().addContainerGap().addComponent(btnLogOut).addComponent(btnUP)
 								.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
 								.addComponent(btnchangePassword).addGap(24)));
 		gl_SouthPanel.setVerticalGroup(gl_SouthPanel.createParallelGroup(Alignment.LEADING)
@@ -94,7 +99,7 @@ public class MainWindowUser extends JFrame {
 						.addGroup(gl_SouthPanel.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnchangePassword, GroupLayout.PREFERRED_SIZE, 21,
 										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnLogOut))
+								.addComponent(btnLogOut).addComponent(btnUP))
 						.addContainerGap(22, Short.MAX_VALUE)));
 		SouthPanel.setLayout(gl_SouthPanel);
 
@@ -149,6 +154,21 @@ public class MainWindowUser extends JFrame {
 				dispose();
 			}
 
+		});
+		
+		btnUP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String amount = JOptionPane.showInputDialog("Introduce the new Password: ");
+				String hostname = "localhost";
+				String port = "8080";
+
+				TheClient newclient = new TheClient(hostname, port);
+				newclient.updatePurse(u,Double.parseDouble(amount),u.getPurse());
+				dispose();
+				
+			}
 		});
 
 		String hostname = "localhost";

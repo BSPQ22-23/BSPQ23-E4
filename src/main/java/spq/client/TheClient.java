@@ -306,8 +306,8 @@ public class TheClient
             }
         }
     }
-    public void updatePurse(User user,Double amount) {
-       	WebTarget updatePurseWebTarget= webTarget.path("updatePurse").queryParam("amount",amount);
+    public void updatePurse(User user,Double amount,Double purse) {
+       	WebTarget updatePurseWebTarget= webTarget.path("updatePurse").queryParam("amount",amount).queryParam("purse",purse);
        	 Invocation.Builder invocationBuilder= updatePurseWebTarget.request(MediaType.APPLICATION_JSON);
        	 Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
        	 if (response.getStatus() == Response.Status.OK.getStatusCode()) {
