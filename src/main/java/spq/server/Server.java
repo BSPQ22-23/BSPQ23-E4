@@ -428,7 +428,27 @@ public class Server {
 		}
 		return products;
 	}
+	@PUT
+	@Path("/updatePurse")
+	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount) {
+		
+		tx.begin();
 
+		User user = pm.getObjectById(User.class, userData.getName());
+		if (user == null) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid user data").build();
+		}
+
+	
+		
+			user.setPurse(user.getPurse()+ amount);
+			pm.makePersistent(user);
+		
+			tx.commit();
+			return Response.ok().build();
+		
+		
+	}
 	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)

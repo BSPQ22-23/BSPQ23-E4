@@ -203,7 +203,19 @@ public class TheClient
 
     
 
-    
+  //Client
+    public void updatePurse(User user,Double amount) {
+       	WebTarget updatePurseWebTarget= webTarget.path("updatePurse").queryParam("amount",amount);
+       	 Invocation.Builder invocationBuilder= updatePurseWebTarget.request(MediaType.APPLICATION_JSON);
+       	 Response response = invocationBuilder.post(Entity.entity(user, MediaType.APPLICATION_JSON));
+       	 if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+                logger.info("Purse actualizado");
+                
+            } else {
+                logger.info("Error buying product: " + response.readEntity(String.class));
+                
+            }
+       }
 
     
 
