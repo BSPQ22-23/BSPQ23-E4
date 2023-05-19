@@ -197,6 +197,35 @@ public class Server {
 			return Response.status(Response.Status.BAD_REQUEST).entity("Insufficient balance").build();
 		}
 	}
+	/**
+	 * 
+	 * Updates the purse amount for the user with the specified name.
+	 * 
+	 * @param name   The name of the user.
+	 * @param amount The amount to update the purse by.
+	 * @return A response indicating success or failure.
+	 */
+	@PUT
+	@Path("/updatePurse")
+	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount) {
+		
+		tx.begin();
+
+		User user = pm.getObjectById(User.class, userData.getName());
+		if (user == null) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid user data").build();
+		}
+
+	
+		
+			user.setPurse(user.getPurse()+ amount);
+			pm.makePersistent(user);
+		
+			tx.commit();
+			return Response.ok().build();
+		
+		
+	}
 
 	/**
 	 * 
@@ -350,39 +379,8 @@ public class Server {
 		}
 	}
 
-	/**
-	 * 
-	 * Updates the purse amount for the user with the specified name.
-	 * 
-	 * @param name   The name of the user.
-	 * @param amount The amount to update the purse by.
-	 * @return A response indicating success or failure.
-	 */
-	@PUT
-	@Path("/updatePurse/{name}/{amount}")
-	public Response updatePurse(@PathParam("name") String name, @PathParam("amount") double amount) {
-		try {
-			tx.begin();
-			User user = pm.getObjectById(User.class, name);
-			if (user != null) {
-				user.setPurse(amount);
-				pm.makePersistent(user);
-				tx.commit();
-				logger.info("Purse updated for user '{}'", user.getName());
-				return Response.ok().build();
-			} else {
-				logger.error("User with name '{}' not found", name);
-				return Response.status(Status.NOT_FOUND).build();
-			}
-		} catch (Exception e) {
-			logger.error("Error updating purse for user '{}': {}", name, e.getMessage());
-			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
-		} finally {
-			if (tx.isActive()) {
-				tx.rollback();
-			}
-		}
-	}
+	
+
 
 	/**
 	 * 
@@ -428,27 +426,7 @@ public class Server {
 		}
 		return products;
 	}
-	@PUT
-	@Path("/updatePurse")
-	public Response updatePurse(UserData userData ,@QueryParam("amount") double amount) {
-		
-		tx.begin();
-
-		User user = pm.getObjectById(User.class, userData.getName());
-		if (user == null) {
-			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid user data").build();
-		}
-
 	
-		
-			user.setPurse(user.getPurse()+ amount);
-			pm.makePersistent(user);
-		
-			tx.commit();
-			return Response.ok().build();
-		
-		
-	}
 	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
