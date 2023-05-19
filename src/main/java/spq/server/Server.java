@@ -159,17 +159,17 @@ public class Server {
 
 				logger.info("Setting name product sale: {}", sale);
 				sale.setNameProduct(saleData.getNameProduct());
-				logger.info("Type set sale:{}", sale);
+				logger.info("Name product set sale:{}", sale);
 				
-				logger.info("Setting type sale: {}", sale);
+				logger.info("Setting price product sale: {}", sale);
 				sale.setPriceProduct(saleData.getPriceProduct());
-				logger.info("Type set sale:{}", sale);
+				logger.info("Price product set sale:{}", sale);
 
 			} else {
 				logger.info("Creating sale: {}", sale);
 				sale = new Sale(saleData.getSaleId(), saleData.getBuyer(), saleData.getNameProduct(), saleData.getPriceProduct());
 				pm.makePersistent(sale);
-				logger.info("User created: {}", sale);
+				logger.info("Sale created: {}", sale);
 			}
 			tx.commit();
 			return Response.ok().build();

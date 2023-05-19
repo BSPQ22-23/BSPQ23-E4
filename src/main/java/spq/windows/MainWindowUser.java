@@ -208,7 +208,10 @@ public class MainWindowUser extends JFrame {
 					a = newclient.buyProduct(u, Double.parseDouble(priceText.getText()), name.getText());
 					if (a = true) {
 						buyButton.setEnabled(false);
+						Product p = new Product(prod.getName(), prod.getPrice(), prod.isAvailable());
+						newclient.addSale(u.getName(), p);
 					}
+					
 				}
 			});
 
