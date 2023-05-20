@@ -29,10 +29,10 @@ public class MainWindowAdmin extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel contentpane;
-	private JLabel labelName = new JLabel();
-	private JLabel labelPassword = new JLabel();
-	private JTextField textName = new JTextField();
-	private JPasswordField textPassword = new JPasswordField();
+	private JLabel labelNombre = new JLabel();
+	private JLabel labelContrasenya = new JLabel();
+	private JTextField textoNombre = new JTextField();
+	private JPasswordField textoContrasenya = new JPasswordField();
 	private JButton btnRegister = new JButton();
 	private JButton btnLogOut = new JButton();
 
@@ -54,17 +54,17 @@ public class MainWindowAdmin extends JFrame{
 		contentpane.add(labelTitle);
 
 		//GET USERNAME
-		labelName.setText("Name:");
-		labelName.setBounds(99, 175, 71, 20);
-		labelName.setOpaque(true);
-		labelName.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelName);
+		labelNombre.setText("Name:");
+		labelNombre.setBounds(99, 175, 71, 20);
+		labelNombre.setOpaque(true);
+		labelNombre.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelNombre);
 		
-		labelPassword.setText("Password:");
-		labelPassword.setBounds(86, 375, 120, 20);
-		labelPassword.setOpaque(true);
-		labelPassword.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
-		contentpane.add(labelPassword);
+		labelContrasenya.setText("Password:");
+		labelContrasenya.setBounds(86, 375, 120, 20);
+		labelContrasenya.setOpaque(true);
+		labelContrasenya.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(labelContrasenya);
 		
 		btnRegister.setForeground(SystemColor.text);
 		btnRegister.setBackground(new Color(0, 51, 255));
@@ -79,12 +79,12 @@ public class MainWindowAdmin extends JFrame{
 		btnLogOut.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(btnLogOut);
 
-		textName.setBounds(214, 175, 143, 20);
-		contentpane.add(textName);
-		String username= textName.getText();
+		textoNombre.setBounds(214, 175, 143, 20);
+		contentpane.add(textoNombre);
+		String username= textoNombre.getText();
 
-		textPassword.setBounds(214, 375, 143, 20);
-		contentpane.add(textPassword);
+		textoContrasenya.setBounds(214, 375, 143, 20);
+		contentpane.add(textoContrasenya);
 		
 		JButton btnRegisterAdminWindow = new JButton("Register Admin");
 		btnRegisterAdminWindow.setBounds(99, 11, 107, 23);
@@ -94,7 +94,11 @@ public class MainWindowAdmin extends JFrame{
 		JButton btnAddProductWindow = new JButton("Add new Product");
 		btnAddProductWindow.setBounds(227, 11, 120, 23);
 		contentpane.add(btnAddProductWindow);
-		String user_password=textPassword.getText();
+		
+		JButton btnViewClients = new JButton("ClientList");
+		btnViewClients.setBounds(85, 438, 85, 21);
+		contentpane.add(btnViewClients);
+		String user_password=textoContrasenya.getText();
 
 		
 		/**
@@ -106,7 +110,7 @@ public class MainWindowAdmin extends JFrame{
 				String hostname="localhost";
 				String  port = "8080";
 				TheClient newclient= new TheClient(hostname, port);
-				newclient.registerUser(textName.getText(),textPassword.getText(), 0, 1);
+				newclient.registerUser(textoNombre.getText(),textoContrasenya.getText(), 0, 1);
 			}
 		});
 		
