@@ -448,6 +448,33 @@ public class Server {
 	}
 	
 	@GET
+	@Path("/getAvailableUsers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<UserData> getAvailableUsers(){
+		List<UserData> users = new ArrayList<>();
+		try {
+			tx.begin();
+			Query <User> query= pm.newQuery(User.class);
+			List<User> results = (List<User>) query.execute();
+			for (User user: results) {
+				UserData userData = new UserData();
+				userData.setName(user.getName());
+				users.add(userData);
+				
+			} 
+			tx.commit();
+		}finally {
+			if(tx.isActive()) {
+				tx.rollback();
+			}
+			
+		}
+		return users;
+		
+	}
+
+	
+	@GET
 	@Path("/sales")
 	public Response getSalesUser(@QueryParam("buyer") String buyer) {
 	    try {

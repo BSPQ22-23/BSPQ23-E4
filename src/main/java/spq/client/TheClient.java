@@ -224,6 +224,20 @@ public class TheClient
         }
     }
     
+    public List<UserData> getAvailableUsers(){
+    	WebTarget getAvailableUsersWebTarget = webTarget.path("getAvailableUsers");
+    	Invocation.Builder invocationBuilder= getAvailableUsersWebTarget.request(MediaType.APPLICATION_JSON);
+    	Response response = invocationBuilder.get();
+    	 if (response.getStatus() != Status.OK.getStatusCode()) {
+             logger.error("Error connecting with the server. Code: {}", response.getStatus());
+             return null;
+         } else {
+             List<UserData> users = response.readEntity(new GenericType<List<UserData>>() {});
+             logger.info("Available products: {}", users);
+             return users;
+         }
+    }
+    
     
     public List<SaleData> getSalesUser(User u) {
         WebTarget getSalesUserWebTarget = webTarget.path("sales");

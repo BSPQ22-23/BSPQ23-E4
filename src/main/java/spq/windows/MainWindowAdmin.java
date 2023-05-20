@@ -35,6 +35,7 @@ public class MainWindowAdmin extends JFrame{
 	private JPasswordField textoContrasenya = new JPasswordField();
 	private JButton btnRegister = new JButton();
 	private JButton btnLogOut = new JButton();
+	private JButton btnSeeUsers= new JButton();
 
 	public class JNumberTextField extends JTextField {
 		private static final long serialVersionUID = 1L;
@@ -73,12 +74,18 @@ public class MainWindowAdmin extends JFrame{
 		btnRegister.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(btnRegister);
 		
+		btnSeeUsers.setBackground(SystemColor.inactiveCaptionBorder);
+		btnSeeUsers.setBounds(47, 500, 143, 32);
+		btnSeeUsers.setText("See Users");
+		btnSeeUsers.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
+		contentpane.add(btnSeeUsers);
+		
 		btnLogOut.setBackground(SystemColor.inactiveCaptionBorder);
 		btnLogOut.setBounds(47, 500, 143, 32);
 		btnLogOut.setText("<< LogOut");
 		btnLogOut.setFont(new Font("Goudy Old Style", Font.BOLD, 16));
 		contentpane.add(btnLogOut);
-
+		
 		textoNombre.setBounds(214, 175, 143, 20);
 		contentpane.add(textoNombre);
 		String username= textoNombre.getText();
@@ -117,7 +124,15 @@ public class MainWindowAdmin extends JFrame{
 		/**
 		 * Button to go to the window for adding new products in the database
 		 */
-		
+		btnSeeUsers.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ClientTableWindow();
+				dispose();
+				
+			}
+		});
 		btnAddProductWindow.addActionListener(new ActionListener() {
 			
 			@Override

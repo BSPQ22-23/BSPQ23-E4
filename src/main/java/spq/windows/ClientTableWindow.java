@@ -5,85 +5,71 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import spq.client.TheClient;
+import spq.serialization.UserData;
+
 import javax.swing.JScrollPane;
 
-public class ClientTableWindow {
 
-	private JFrame frame;
-	private JScrollPane CentereScrollPane;
-	private JTable tableClient;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClientTableWindow window = new ClientTableWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+public class ClientTableWindow extends JFrame {
 
-	/**
-	 * Create the application.
-	 */
-	public ClientTableWindow() {
-		initialize();
-	}
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		CentereScrollPane = new JScrollPane();
-		frame.getContentPane().add(CentereScrollPane, BorderLayout.CENTER);
-		
-		tableClient = new JTable();
-		frame.getContentPane().add(tableClient, BorderLayout.NORTH);
-		
-        // Conectar a la base de datos y recuperar los clientes registrados
-        try (Connection conn = DriverManager.getConnection("productsdb", "usuario", "contraseña")) {
-            String sql = "SELECT nombre, email, telefono FROM clientes";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            
-            // Obtener los metadatos de la consulta
-            int columnCount = resultSet.getMetaData().getColumnCount();
-            
-            // Agregar las columnas al modelo de la tabla
-            for (int i = 1; i <= columnCount; i++) {
-             //   model.addColumn(resultSet.getMetaData().getColumnName(i));
-            }
-            
-            // Agregar las filas al modelo de la tabla
-            while (resultSet.next()) {
-                Object[] row = new Object[columnCount];
-                for (int i = 1; i <= columnCount; i++) {
-                    row[i - 1] = resultSet.getObject(i);
-                }
-               // model.addRow(row);
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private JButton btnATRAS = new JButton("Atrás");
+    private JPanel contentPane;
+   
+    private JTable table;
+    public ClientTableWindow() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        contentPane = new JPanel();
+        contentPane.setBackground(new Color(220, 220, 220)); // Fondo gris claro
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout(0, 0));
         
+        btnATRAS.setBounds(10, 10, 89, 23);
+        contentPane.add(btnATRAS, BorderLayout.NORTH);
+        
+        String hostname = "localhost";
+		String port = "8080";
 		
-		
-	}
+		TheClient newclient = new TheClient(hostname, port);
+		List<UserData> users = newclient.getAvailableUsers();
+		 // Crear el modelo de la tabla
+        String[] columnNames = { "Nombre" };
+        Object[][] data = new Object[users.size()][1];
+        for (int i = 0; i < users.size(); i++) {
+            data[i][0] = users.get(i).getName();
+        }
+        table = new JTable(data, columnNames);
 
-}
+        // Agregar la tabla a un JScrollPane para permitir el desplazamiento
+        JScrollPane scrollPane = new JScrollPane(table);
+        contentPane.add(scrollPane, BorderLayout.CENTER);
+        contentPane.add(table, BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(440, 600);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setTitle("See Users");
+		
+    }
+   }
