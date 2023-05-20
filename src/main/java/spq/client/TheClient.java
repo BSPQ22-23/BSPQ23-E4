@@ -223,6 +223,21 @@ public class TheClient
             return products;
         }
     }
+    
+    
+    public List<SaleData> getSalesUser(User u) {
+        WebTarget getSalesUserWebTarget = webTarget.path("sales");
+        Invocation.Builder invocationBuilder = getSalesUserWebTarget.request(MediaType.APPLICATION_JSON);
+        Response response = invocationBuilder.get();
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+            return null;
+        } else {
+            List<SaleData> sales = response.readEntity(new GenericType<List<SaleData>>() {});
+            logger.info("Sales of this user: {}", sales);
+            return sales;
+        }
+    }
 
     
 
@@ -379,6 +394,8 @@ public class TheClient
 		TheClient newclient= new TheClient(hostname, port);
 		newclient.registerUser(USER, PASSWORD, 23, 0);
 		newclient.registerUser("admin", "admin", 0, 1);
+		Product p = new Product("Product 1", 12.12, true);
+		newclient.addSale("a",p);
 		new LoginWindow();
 		
 		

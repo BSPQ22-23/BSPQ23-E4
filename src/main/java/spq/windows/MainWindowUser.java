@@ -13,6 +13,7 @@ import spq.client.TheClient;
 import spq.jdo.Product;
 import spq.jdo.User;
 import spq.serialization.ProductData;
+import spq.serialization.SaleData;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
@@ -221,6 +222,24 @@ public class MainWindowUser extends JFrame {
 			CenterPanel.updateUI();
 
 		}
+		
+		/*List<SaleData> sales = newclient.getSalesUser(u);
+		for (SaleData s : sales) {
+
+			JPanel panel = new JPanel();
+			panel.setLayout(new GridLayout(7, 0, 0, 0));
+
+			// System.out.println(car.getMatriculation_number());
+			panel.add(new JLabel(s.getNameProduct()));
+			double p = s.getPriceProduct();
+			String pricetext = Double.toString(p);
+
+			panel.add(new JLabel(pricetext));
+			panel.setBorder(BorderFactory.createLineBorder(Color.red));
+			CenterPanel.add(panel);
+			CenterPanel.updateUI();
+
+		}*/
 
 		/**
 		 * Button to log out and return to the login window

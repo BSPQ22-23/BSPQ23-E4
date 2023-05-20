@@ -30,8 +30,10 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import spq.client.TheClient;
+import spq.jdo.Product;
 import spq.jdo.User;
 import spq.serialization.ProductData;
+import spq.serialization.SaleData;
 import spq.serialization.UserData;
 
 public class TheClientTest {
@@ -46,6 +48,9 @@ public class TheClientTest {
 
     @Captor
     private ArgumentCaptor<Entity<ProductData>> productDataEntityCaptor;
+    
+    @Captor
+    private ArgumentCaptor<Entity<SaleData>> saleDataEntityCaptor;
 
     private TheClient cli;
     
@@ -97,6 +102,22 @@ public class TheClientTest {
         assertEquals(true, productDataEntityCaptor.getValue().getEntity().isAvailable());
         
    }
+    
+    @Test
+    public void testAddSale() {
+        when(webTarget.path("add-sale")).thenReturn(webTarget);
+
+        Response response = Response.ok().build();
+        when(webTarget.request(MediaType.APPLICATION_JSON).post(any(Entity.class))).thenReturn(response);
+        Product p = new Product("prod", 20.99, false);
+        assertTrue(cli.addSale("john", p));
+
+        verify(webTarget.request(MediaType.APPLICATION_JSON)).post(saleDataEntityCaptor.capture());
+        assertEquals("john", saleDataEntityCaptor.getValue().getEntity().getBuyer());
+        assertEquals("prod", saleDataEntityCaptor.getValue().getEntity().getNameProduct());
+        assertEquals(20.99, saleDataEntityCaptor.getValue().getEntity().getPriceProduct(), 0);
+        
+    }
     
     /*@Test
     public void testLoginUser() {

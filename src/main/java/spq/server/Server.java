@@ -448,6 +448,66 @@ public class Server {
 	}
 	
 	@GET
+	@Path("/sales")
+	public Response getSalesUser(@QueryParam("buyer") String buyer) {
+	    try {
+	        tx.begin();
+	        logger.info("Fetching sales for the user: {}", buyer);
+
+	        Query<Sale> query = pm.newQuery(Sale.class, "buyer == buyerName");
+	        query.declareParameters("String buyerName");
+	        List<Sale> sales = (List<Sale>) query.execute(buyer);
+
+	        List<SaleData> filteredSales = new ArrayList<>();
+	        for (Sale sale : sales) {
+	            
+	            SaleData saleData = new SaleData(sale.getSaleId(), sale.getBuyer(), sale.getNameProduct(), sale.getPriceProduct());
+	            filteredSales.add(saleData);
+	        }
+
+	        tx.commit();
+	        return Response.ok(filteredSales).build();
+
+	    } catch (Exception e) {
+	        logger.error("Error fetching sales for the user: {}", e.getMessage());
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	        return Response.serverError().build();
+	    }
+	}
+
+	
+	/*@GET
+	@Path("/sales")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<SaleData> getSalesUser(String buyer) {
+		List<SaleData> sales = new ArrayList<>();
+		try {
+			tx.begin();
+			Query<Product> query = pm.newQuery(Product.class, "available == true");
+			List<Product> results = (List<Product>) query.execute();
+			for (Product product : results) {
+				ProductData productData = new ProductData();
+				productData.setName(product.getName());
+				productData.setPrice(product.getPrice());
+				if (product.isAvailable() == true) {
+					productData.setAvailable(product.isAvailable());
+					products.add(productData);
+				}
+			}
+			tx.commit();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return products;
+	}*/
+	
+	
+	
+	@GET
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response sayHello() {
