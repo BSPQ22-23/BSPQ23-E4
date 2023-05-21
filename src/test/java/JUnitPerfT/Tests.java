@@ -60,14 +60,14 @@ public class Tests {
      * A rule that generates a JUnitPerf report in HTML format.
      */
     @Rule
-    public JUnitPerfRule rule = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.html"));
+    public JUnitPerfRule rule1 = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report1.csv"));
     
     /** 
      * A rule that generates a JUnitPerf report in CSV format.
      */
     @Rule
-    public JUnitPerfRule rule1 = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report.csv"));
-    
+    public JUnitPerfRule rule2 = new JUnitPerfRule(new HtmlReportGenerator("target/junitperf/report1.html"));
+
     /** 
      * A mocked server to use in testing.
      */
