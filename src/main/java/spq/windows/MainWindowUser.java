@@ -84,25 +84,46 @@ public class MainWindowUser extends JFrame {
 		btnchangePassword.setBackground(Color.ORANGE);
 		btnchangePassword.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnchangePassword.setForeground(Color.BLACK);
+		
 		//BTN UPDATEPURSE
 		JButton btnUP = new JButton("UPDATEPURSE");
 		btnUP.setBackground(Color.GREEN);
 		btnUP.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnUP.setForeground(Color.BLACK);
+		
+		JButton btnSeeSales = new JButton("See Sales");
+		btnSeeSales.setBackground(Color.ORANGE);
+		btnSeeSales.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnSeeSales.setForeground(Color.BLACK);
 		GroupLayout gl_SouthPanel = new GroupLayout(SouthPanel);
-		gl_SouthPanel
-				.setHorizontalGroup(gl_SouthPanel.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-						gl_SouthPanel.createSequentialGroup().addContainerGap().addComponent(btnLogOut).addComponent(btnUP)
-								.addPreferredGap(ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-								.addComponent(btnchangePassword).addGap(24)));
-		gl_SouthPanel.setVerticalGroup(gl_SouthPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_SouthPanel.createSequentialGroup().addContainerGap()
-						.addGroup(gl_SouthPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnchangePassword, GroupLayout.PREFERRED_SIZE, 21,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnLogOut).addComponent(btnUP))
-						.addContainerGap(22, Short.MAX_VALUE)));
+		gl_SouthPanel.setHorizontalGroup(
+			gl_SouthPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_SouthPanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btnLogOut)
+					.addComponent(btnUP)
+					.addPreferredGap(ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+					.addComponent(btnSeeSales)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnchangePassword)
+					.addGap(24))
+		);
+		gl_SouthPanel.setVerticalGroup(
+			gl_SouthPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_SouthPanel.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_SouthPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnchangePassword, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLogOut)
+						.addComponent(btnUP)
+						.addComponent(btnSeeSales))
+					.addContainerGap(22, Short.MAX_VALUE))
+		);
 		SouthPanel.setLayout(gl_SouthPanel);
+		
+	
+		
+		
 
 		JPanel NorthPanel = new JPanel();
 		NorthPanel.setBackground(new Color(255, 235, 205));
@@ -171,6 +192,35 @@ public class MainWindowUser extends JFrame {
 				
 			}
 		});
+		
+		btnSeeSales.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	String hostname = "localhost";
+				String port = "8080";
+
+				TheClient newclient = new TheClient(hostname, port);
+		        List<SaleData> sales = newclient.getSalesUser(u);
+		        if (sales != null) {
+		            StringBuilder message = new StringBuilder();
+		            message.append("Sales of user: ").append(u.getName()).append("\n");
+		            if (sales.isEmpty()) {
+		            	message.append("This user has no sales");
+		            } else {
+		            	for (SaleData sale : sales) {
+			                message.append("Product: ").append(sale.getNameProduct()).append("\n");
+			                message.append("Price: ").append(sale.getPriceProduct()).append("\n");
+			                message.append("--------------------------------------\n");
+			            }
+		            }
+		            
+		            JOptionPane.showMessageDialog(null, message.toString(), "Sales", JOptionPane.INFORMATION_MESSAGE);
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Error retrieving sales", "Error", JOptionPane.ERROR_MESSAGE);
+		        }
+		    }
+		});
+
 
 		String hostname = "localhost";
 		String port = "8080";

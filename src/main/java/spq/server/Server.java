@@ -503,8 +503,10 @@ public class Server {
 	
 	@GET
 	@Path("/sales")
-	public Response getSalesUser(@QueryParam("buyer") String buyer) {
-	    try {
+	public List<SaleData> getSalesUser(@QueryParam("buyer") String buyer) {
+		
+		List<SaleData> filteredSales = new ArrayList<>();
+		try {
 	        tx.begin();
 	        logger.info("Fetching sales for the user: {}", buyer);
 
@@ -512,23 +514,23 @@ public class Server {
 	        query.declareParameters("String buyerName");
 	        List<Sale> sales = (List<Sale>) query.execute(buyer);
 
-	        List<SaleData> filteredSales = new ArrayList<>();
+	        
 	        for (Sale sale : sales) {
-	            
-	            SaleData saleData = new SaleData(sale.getSaleId(), sale.getBuyer(), sale.getNameProduct(), sale.getPriceProduct());
-	            filteredSales.add(saleData);
+	            if (sale.getBuyer().equals(buyer)) {
+	            	SaleData saleData = new SaleData(sale.getSaleId(), sale.getBuyer(), sale.getNameProduct(), sale.getPriceProduct());
+		            filteredSales.add(saleData);
+	            }
 	        }
 
 	        tx.commit();
-	        return Response.ok(filteredSales).build();
+	        
 
-	    } catch (Exception e) {
-	        logger.error("Error fetching sales for the user: {}", e.getMessage());
-	        if (tx.isActive()) {
-	            tx.rollback();
-	        }
-	        return Response.serverError().build();
-	    }
+	    } finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+		}
+		return filteredSales;
 	}
 
 	
