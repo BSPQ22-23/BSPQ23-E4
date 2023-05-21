@@ -200,19 +200,26 @@ public class MainWindowUser extends JFrame {
 				String port = "8080";
 
 				TheClient newclient = new TheClient(hostname, port);
-		        List<SaleData> sales = newclient.getSalesUser(u);
+		        List<SaleData> sales = newclient.getSales();
 		        if (sales != null) {
 		            StringBuilder message = new StringBuilder();
-		            message.append("Sales of user: ").append(u.getName()).append("\n");
-		            if (sales.isEmpty()) {
-		            	message.append("This user has no sales");
-		            } else {
-		            	for (SaleData sale : sales) {
+		            /*if (sales.isEmpty()) {
+		            	message.append("There are no sales");
+		            } else {*/
+		            message.append("Products bought by user: ").append(u.getName()).append("\n");
+		            int cont = 0;
+	            	for (SaleData sale : sales) {
+	            		if (sale.getBuyer().equals(u.getName())) {
 			                message.append("Product: ").append(sale.getNameProduct()).append("\n");
 			                message.append("Price: ").append(sale.getPriceProduct()).append("\n");
 			                message.append("--------------------------------------\n");
-			            }
+			                cont++;
+	            		}
 		            }
+	            	if (cont == 0) {
+	            		message.append("This user has no sales");
+	            	}
+		            //}
 		            
 		            JOptionPane.showMessageDialog(null, message.toString(), "Sales", JOptionPane.INFORMATION_MESSAGE);
 		        } else {

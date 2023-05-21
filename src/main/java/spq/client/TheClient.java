@@ -239,7 +239,7 @@ public class TheClient
     }
     
     
-    public List<SaleData> getSalesUser(User u) {
+    public List<SaleData> getSales() {
         WebTarget getSalesUserWebTarget = webTarget.path("sales");
         Invocation.Builder invocationBuilder = getSalesUserWebTarget.request(MediaType.APPLICATION_JSON);
         Response response = invocationBuilder.get();
@@ -417,9 +417,15 @@ public class TheClient
 		String port = args[1];
 		
 		TheClient newclient= new TheClient(hostname, port);
+		
+		Product p = new Product("Product 0", 12.12, false);
+		Product p1 = new Product("Product 1", 23.99, true);
+		Product p2 = new Product("Product 2", 45.59, true);
+		
+		newclient.addProduct(p1.getName(), p1.getPrice(), p1.isAvailable());
+		newclient.addProduct(p2.getName(), p2.getPrice(), p2.isAvailable());
 		newclient.registerUser(USER, PASSWORD, 23, 0);
 		newclient.registerUser("admin", "admin", 0, 1);
-		Product p = new Product("Product 1", 12.12, true);
 		newclient.addSale("a",p);
 		new LoginWindow();
 		

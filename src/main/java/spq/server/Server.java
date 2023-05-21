@@ -503,34 +503,31 @@ public class Server {
 	
 	@GET
 	@Path("/sales")
-	public List<SaleData> getSalesUser(@QueryParam("buyer") String buyer) {
-		
-		List<SaleData> filteredSales = new ArrayList<>();
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<SaleData> getSales(){
+		List<SaleData> thesales = new ArrayList<>();
 		try {
-	        tx.begin();
-	        logger.info("Fetching sales for the user: {}", buyer);
-
-	        Query<Sale> query = pm.newQuery(Sale.class, "buyer == buyerName");
-	        query.declareParameters("String buyerName");
-	        List<Sale> sales = (List<Sale>) query.execute(buyer);
-
-	        
-	        for (Sale sale : sales) {
-	            if (sale.getBuyer().equals(buyer)) {
-	            	SaleData saleData = new SaleData(sale.getSaleId(), sale.getBuyer(), sale.getNameProduct(), sale.getPriceProduct());
-		            filteredSales.add(saleData);
-	            }
-	        }
-
-	        tx.commit();
-	        
-
-	    } finally {
-			if (tx.isActive()) {
+			tx.begin();
+			Query <Sale> query= pm.newQuery(Sale.class);
+			List<Sale> results = (List<Sale>) query.execute();
+			for (Sale sale: results) {
+				SaleData saleData = new SaleData();
+				saleData.setSaleId(sale.getSaleId());
+				saleData.setBuyer(sale.getBuyer());
+				saleData.setNameProduct(sale.getNameProduct());
+				saleData.setPriceProduct(sale.getPriceProduct());
+				thesales.add(saleData);
+				
+			} 
+			tx.commit();
+		}finally {
+			if(tx.isActive()) {
 				tx.rollback();
 			}
+			
 		}
-		return filteredSales;
+		return thesales;
+		
 	}
 
 	
