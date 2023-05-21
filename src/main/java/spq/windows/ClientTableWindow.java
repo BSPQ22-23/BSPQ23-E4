@@ -32,7 +32,7 @@ public class ClientTableWindow extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    private JButton btnATRAS = new JButton("Atrás");
+    private JButton btnBACK = new JButton("Back");
     private JPanel contentPane;
     private JButton btndelete= new JButton("delete");
     private JTable table;
@@ -40,22 +40,22 @@ public class ClientTableWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
         contentPane = new JPanel();
-        contentPane.setBackground(new Color(220, 220, 220)); // Fondo gris claro
+        contentPane.setBackground(new Color(220, 220, 220)); // Light gray background
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
         
-        btnATRAS.setBounds(10, 10, 89, 23);
-        contentPane.add(btnATRAS, BorderLayout.NORTH);
+        btnBACK.setBounds(10, 10, 89, 23);
+        contentPane.add(btnBACK, BorderLayout.NORTH);
         
         String hostname = "localhost";
 		String port = "8080";
 		
 		TheClient newclient = new TheClient(hostname, port);
 		List<UserData> users = newclient.getAvailableUsers();
-		 // Crear el modelo de la tabla
+		 // Creating the model of the table
 		
-		String[] columnNames = { "Nombre", "Contraseña" };
+		String[] columnNames = { "Name", "Password" };
         Object[][] data = new Object[users.size()][columnNames.length];
         for (int i = 0; i < users.size(); i++) {
             data[i][0] = users.get(i).getName();
@@ -64,7 +64,7 @@ public class ClientTableWindow extends JFrame {
         }
         table = new JTable(data, columnNames);
         
-        // Agregar la tabla a un JScrollPane para permitir el desplazamiento
+        // Add table to a JScrollPane to allow scrolling
         JScrollPane scrollPane = new JScrollPane(table);
         contentPane.add(scrollPane, BorderLayout.CENTER);
         contentPane.add(table, BorderLayout.CENTER);
