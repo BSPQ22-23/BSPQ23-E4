@@ -318,7 +318,7 @@ public class TheClient
     
     /**
      * Delete a user from the server
-     * @param user The user to be deleted
+     * @param user2 The user to be deleted
      */
     
     public void deleteUser(User user) {
@@ -333,6 +333,17 @@ public class TheClient
         }
     }
     
+    public void deleteUserTable(UserData user) {
+    	WebTarget deleteUserTableWebTarget = webTarget.path("deleteUserTable");
+        Invocation.Builder invocationBuilder = deleteUserTableWebTarget.request(MediaType.APPLICATION_JSON);
+        
+        Response response = invocationBuilder.delete();
+        if (response.getStatus() != Status.OK.getStatusCode()) {
+            logger.error("Error connecting with the server. Code: {}", response.getStatus());
+        } else {
+            logger.info("User {} correctly deleted", user.getName());
+        }
+    }
     /**
      * Check if a user exists in the database by their name
      * @param name The name of the user to check

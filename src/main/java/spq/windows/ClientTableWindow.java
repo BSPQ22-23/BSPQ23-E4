@@ -34,7 +34,7 @@ public class ClientTableWindow extends JFrame {
 
     private JButton btnATRAS = new JButton("Atrás");
     private JPanel contentPane;
-   
+    private JButton btndelete= new JButton("delete");
     private JTable table;
     public ClientTableWindow() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,13 +54,16 @@ public class ClientTableWindow extends JFrame {
 		TheClient newclient = new TheClient(hostname, port);
 		List<UserData> users = newclient.getAvailableUsers();
 		 // Crear el modelo de la tabla
-        String[] columnNames = { "Nombre" };
-        Object[][] data = new Object[users.size()][1];
+		
+		String[] columnNames = { "Nombre", "Contraseña" };
+        Object[][] data = new Object[users.size()][columnNames.length];
         for (int i = 0; i < users.size(); i++) {
             data[i][0] = users.get(i).getName();
+            data[i][1] = users.get(i).getPassword();
+            
         }
         table = new JTable(data, columnNames);
-
+        
         // Agregar la tabla a un JScrollPane para permitir el desplazamiento
         JScrollPane scrollPane = new JScrollPane(table);
         contentPane.add(scrollPane, BorderLayout.CENTER);

@@ -363,6 +363,32 @@ public class Server {
 			}
 		}
 	}
+	
+	@DELETE
+	@Path("/deleteUserTable")
+	public Response deleteUserTable(User user) {
+	    try {
+	        tx.begin();
+	        User existingUser = pm.getObjectById(User.class, user.getName());
+	        if (existingUser != null) {
+	            pm.deletePersistent(existingUser);
+	            tx.commit();
+	            logger.info("User '{}' deleted", existingUser.getName());
+	            return Response.ok().build();
+	        } else {
+	            logger.error("User with name '{}' not found", user.getName());
+	            return Response.status(Status.NOT_FOUND).build();
+	        }
+	    } catch (Exception e) {
+	        logger.error("Error deleting user '{}': {}", user.getName(), e.getMessage());
+	        return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+	    } finally {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	    }
+	}
+
 
 	/**
 	 * 
@@ -459,6 +485,7 @@ public class Server {
 			for (User user: results) {
 				UserData userData = new UserData();
 				userData.setName(user.getName());
+				userData.setPassword(user.getPassword());
 				users.add(userData);
 				
 			} 
