@@ -1,6 +1,8 @@
 package spq.windows;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -61,6 +63,7 @@ public class ClientTableWindow extends JFrame {
             data[i][0] = users.get(i).getName();
             data[i][1] = users.get(i).getPassword();
             
+            
         }
         table = new JTable(data, columnNames);
         
@@ -73,6 +76,16 @@ public class ClientTableWindow extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setTitle("See Users");
+		
+		btnBACK.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new AddProductWindow();
+				dispose();
+			}
+		});
 		
     }
    }
